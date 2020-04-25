@@ -7,9 +7,7 @@ function arrayOfNumbers(num1, num2){
     }
     return arr;
 }
-
-var result = arrayOfNumbers(1, 255);
-console.log(result);
+console.log(arrayOfNumbers(1,255));
 
 
 // 2. Get even 1000 
@@ -23,9 +21,7 @@ function getEvenSum(num1, num2){
     }
     return sum;
 }
-
-var result = getEvenSum(1, 1000);
-console.log(result);
+console.log(getEvenSum(1, 1000));
 
 
 // 3. Sum odd 5000
@@ -39,9 +35,7 @@ function getOddSum(num1, num2){
     }
     return sum;
 }
-
-var result = getOddSum(1, 5000);
-console.log(result);
+console.log(getOddSum(1, 5000));
 
 
 // 4. Iterate an Array; 
@@ -53,16 +47,14 @@ function sumArray(arr){
     }
     return sum;
 }
-
 var testArr = [-5,2,5,12];
-var result = sumArray(testArr);
-console.log(result);
+console.log(sumArray(testArr));
 
 
 // 5. Find max
 
 function findMax(arr){
-    var max = 0;
+    var max = arr[0];
     for(i=0; i<arr.length; i++){
         if(arr[i] > max){
             max = arr[i];
@@ -70,10 +62,8 @@ function findMax(arr){
     }
     return max;
 }
-
 var testArr = [-3,3,5,7];
-var result = findMax(testArr);
-console.log(result);
+console.log(findMax(testArr));
 
 
 // 6. Find average
@@ -86,10 +76,8 @@ function getAvg(arr){
     var avg = (sum / arr.length);
     return avg;
 }
-
 var testArr = [1,3,5,7,20];
-var result = getAvg(testArr);
-console.log(result);
+console.log(rgetAvg(testArr));
 
 
 // 7. Array odd
@@ -103,9 +91,7 @@ function createOddArray(num1, num2){
     }
     return newArr;
 }
-
-var result = createOddArray(1, 50);
-console.log(result);
+console.log(createOddArray(1, 50));
 
 
 // 8. Greater than Y
@@ -119,10 +105,8 @@ function countGreaterThan(arr, y){
     }
     return count;
 }
-
 var testArr = [1, 3, 5, 7];
-var result = countGreaterThan(testArr, 3);
-console.log(result);
+console.log(countGreaterThan(testArr, 3));
 
 
 // 9. Squares
@@ -133,10 +117,8 @@ function squares(arr){
     }
     return arr;
 }
-
 var testArr = [1,5,10,-2];
-var result = squares(testArr);
-console.log(result);
+console.log(squares(testArr));
 
 
 // 10. Negatives
@@ -149,10 +131,8 @@ function swapNegatives(arr){
     }
     return arr;
 }
-
 var testArr = [1,5,10,-2];
-var result = swapNegatives(testArr);
-console.log(result);
+console.log(swapNegatives(testArr));
 
 
 // 11. 
@@ -174,10 +154,8 @@ function arrMaxMinAvg(arr){
     var arrNew = [max, min, avg];
     return arrNew;
 }
-
 var testArr = [1,5,10,-2];
-var result = arrMaxMinAvg(testArr);
-console.log(result);
+console.log(arrMaxMinAvg(testArr));
 
 
 // 12. Swap values
@@ -188,10 +166,8 @@ function firstLastSwap(arr){
     arr[0] = newfirst;
     return arr;
 }
-
 var testArr = [1,5,10,-2];
-var result = firstLastSwap(testArr);
-console.log(result);
+console.log(firstLastSwap(testArr));
 
 
 // 13. Number to String
@@ -204,7 +180,5 @@ function numToString(arr){
     }
     return arr;
 }
-
 var testArr = [-1,-3,2];
-var result = numToString(testArr);
-console.log(result);
+console.log(numToString(testArr));
