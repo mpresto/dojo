@@ -77,7 +77,7 @@ function getAvg(arr){
     return avg;
 }
 var testArr = [1,3,5,7,20];
-console.log(rgetAvg(testArr));
+console.log(getAvg(testArr));
 
 
 // 7. Array odd
@@ -138,8 +138,8 @@ console.log(swapNegatives(testArr));
 // 11. 
 
 function arrMaxMinAvg(arr){
-    var max = 0;
-    var min = 0;
+    var max = arr[0];
+    var min = arr[0];
     var sum = 0;
     for(i=0; i<arr.length; i++){
         sum = sum + arr[i];
@@ -161,9 +161,9 @@ console.log(arrMaxMinAvg(testArr));
 // 12. Swap values
 
 function firstLastSwap(arr){
-    var newfirst = arr[(arr.length-1)];
-    var newlast = arr[0];
-    arr[0] = newfirst;
+    var temp = arr[(arr.length-1)];
+    arr[(arr.length-1)] = arr[0];
+    arr[0] = temp;
     return arr;
 }
 var testArr = [1,5,10,-2];
