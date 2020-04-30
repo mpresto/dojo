@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover In/Out</title>
+
+    <style>
+        img{ 
+            display: inline-block;
+            height: 500px;
+            width: 300px;
+        }
+
+/* for a more fun page, comment out all <img> tags below and style with this instead:
+         img{ 
+            display: inline-block;
+            height: 250px;
+            width: 150px;
+            } */
+        
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            var temp = [];
+
+            $('img').hover(
+                function(){
+                    $(this).attr('temp', $(this).attr('src'));
+                    $(this).attr('src', $(this).attr('data-alt-src'));
+                }, function(){
+                    $(this).attr('data-alt-src', $(this).attr('temp'));
+                }
+            );
+        });
+    </script>
+
+</head>
+
+<body>
+    <div id="container">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <!-- <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing">
+        <img src="snoopy1.jpg" data-alt-src="snoopy2.jpg"alt="snoopy dancing"> -->
+    </div>
+</body>
+</html>
