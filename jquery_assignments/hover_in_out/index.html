@@ -31,7 +31,7 @@
                 function(){
                     $(this).attr('temp', $(this).attr('src'));
                     $(this).attr('src', $(this).attr('data-alt-src'));
-                }, function(){
+                // }, function(){ // uncomment to make the image "stick" after hover, otherwise it reverts back automatically :) 
                     $(this).attr('data-alt-src', $(this).attr('temp'));
                 }
             );
