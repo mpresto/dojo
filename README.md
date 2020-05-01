@@ -1,2 +1,2 @@
 # dojo
-home to all my dojo files!
+Home to my CodingDojo exercise files and smaller assignments.
