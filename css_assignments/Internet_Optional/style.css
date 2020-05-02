@@ -1,0 +1,118 @@
+* {
+    margin: 0px; 
+    padding: 0px;
+    font-family: sans-serif;
+    border: 1px solid orange;
+}
+#wrapper {
+    width: 1200px;
+    min-height: 1000px;
+    background-color: white;
+}
+#header {
+    width: inherit;
+}
+    #header img {
+        vertical-align: middle;
+        height: 90px;
+        width: 90px;
+        margin-bottom: -15px; 
+    }
+    #header h1 {
+        display: inline;
+        vertical-align: middle;
+        color: #4b4b4b;
+        font-size: 32pt;
+        font-weight: 400;
+    }
+    #header span {
+        color: #2568a0;
+    }
+    #header h2 {
+        background-image: linear-gradient(#2b69a0, #457ca9, #2b69a0);
+        padding: 10px;
+        color: white;
+        font-size: 22pt;
+        font-weight: 400;
+    }
+#siderail {
+    width: 225px;
+    display: inline-block;
+    padding: 10px 2px;
+}
+    #siderail h3, p {
+        margin: 15px 0px;
+    }
+    #siderail h3 span{
+        color: red;
+    }
+    #siderail p span {
+        color: #2b69a0;
+    }
+    #siderail button {
+        width: 200px;
+        color: white;
+        font-size: 14pt;
+        border-radius: 8px;
+        box-shadow: 2px 2px 2px black;
+        text-align: center;
+        display: block;
+        padding: 5px 2px;
+        margin: 4px;
+
+    }
+    #bluebutton {
+        background-color: #427fb1;
+    }
+    #orangebutton {
+        background-color: #ee8200;
+    }
+#navigation {
+    width: 925px;
+    font-size: 14pt;
+    display: inline-block;
+    vertical-align: top;
+}
+    #navigation a {
+        color: #2b69a0;
+    }
+#leftnav {
+    width: 500px;
+    display: inline-block;
+    vertical-align: top;
+}
+    #leftnav img {
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    #leftnav p{
+        display: inline;
+        vertical-align: middle;
+    }
+    #phoneicon {
+        height: 50px;
+        width: 50px;
+        margin-left: 190px;
+    }
+#rightnav {
+    display: inline-block;
+    font-size: 8pt;
+    text-align: center;
+    /* margin-left: */ 
+}
+     #rightnav img {
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+    }
+    #rightnav p {
+        margin: 2px;
+    }
+    #phonenumber {
+        font-size: 18pt;
+        font-weight: 700;
+        color: #42c2df;
+    } 
+

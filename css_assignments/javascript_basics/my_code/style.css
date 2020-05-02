@@ -1,0 +1,55 @@
+/* css stylesheet for javascript_basics */
+
+.container{
+    background: #1c345d;
+    display: block;
+    width: 1200px;
+    margin: 0px auto;
+    padding: 15px;
+}
+   .header{
+        min-height: 50px;
+        width: 1180px;
+        border-radius: 16px;
+        background-color: red;
+        margin: 0px 0px 15px 0px;
+        padding: 10px;
+   }
+   .side_rail{
+        border-radius: 25px;
+        background-color: #317d8c;
+        display: inline-block;
+        vertical-align: top;
+        width: 230px;
+        margin: 0px 15px 15px 0px;
+        padding: 5px 0px;
+   }
+   .main_content{
+        border-radius: 25px;
+        background-color: #0e1822;
+        display: inline-block;
+        vertical-align: top;
+        width: 920px;
+        margin-bottom: 15px;
+        padding: 15px;
+   }
+   .footer {
+       border-radius: 25px;
+       background-color: #5d6573;
+       display: block;
+       margin: 0px;
+       padding: 15px;
+   }
+   h1, h2, p{
+        color: #c3d6ec;
+        padding: 2px;
+   }
+   ul, li{
+        color: #c3d6ec;
+   }
+   a, .menu{
+    color: #52bcd6;
+    }
+    span{
+        color: #5f6ce5;
+    }
