@@ -1,0 +1,7 @@
+FRI 4/9
+
+Yes, technically you can create an element where the closing tag just contains </>. 
+I feel like this might create problems with nested tags -- like which element does this non-specific tag close?
+And additionaly, could make reading the html a lot more difficult for humans. 
+
+MON 4/12
