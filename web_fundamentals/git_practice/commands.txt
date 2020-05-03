@@ -1,0 +1,21 @@
+~ cd Desktop
+Desktop mkdir test
+test touch index.html
+     touch styles.css
+     git init
+     git add .
+     git status
+     git commit -m "initial commit"
+     git code index.html 
+     git status
+     git add .
+     git commit "update html"
+     git code styles.css
+     git add .
+     git commit "update css"
+     git log
+     git revert -n 5bc9d82
+     git code styles.css
+     git add .
+     git commit "corrected update css"
+     

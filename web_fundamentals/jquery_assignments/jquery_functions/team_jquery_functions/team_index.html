@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team jQuery Function Assignment</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    <script>
+        console.log($);
+        $(document).ready(function(){
+
+            //.hide()
+            $('#hide').click(function(){
+			$('.hide').hide()
+            });
+
+            //.show()
+            $('#show').click(function(){
+                $('.hide').show()
+            });
+
+            //.toggle 
+            $('#toggle').click(function(){
+                $('.toggle').toggle()
+            });
+
+            //.slideDown()
+            $('.slidedown').click(function(){
+                $('#slidehide').slideDown()
+            });
+
+            //.slideUp()
+            $('.slideup').click(function(){
+                $('#slidehide').slideUp()
+            });
+
+            //.slideToggle()
+            $('.slidetoggle').click(function(){
+                $('#slidehide').slideToggle()
+            });
+
+            //.fadeIn()
+            $('.fadeIn').click(function(){
+            $("#fadesin").fadeIn()
+            });
+
+            //.fadeOut()
+            $('.fadeOut').click(function(){
+            $("#fadeOut").fadeOut()
+            });
+
+            //.addClass()
+            $('.addClass').click(function(){
+            $("#addClass").addClass("red")
+            });
+
+            //.before() .after() .append()
+            $('#pbefore').click(function(){
+                $('#specialp').before('<img src="jQuery.jpg" alt="jquerylogo" height="50px">')
+            });
+            $('#specialp').click(function(){
+                $('#specialp').after('<img src="jQuery.jpg" alt="jquerylogo" height="50px">')
+            });
+            $('#append').click(function(){
+                $('#append').append('<img src="jQuery.jpg" alt="jquerylogo" height="50px">')
+            });  
+
+            //.txt()
+            $(".text").click(function(){
+                $('.change_text').text("This sentence has changed!!")
+            });
+
+            //.html()
+            $(".html").click(function(){
+                $('.change_html').html('<p><b>This</b> is a <span class="red">new sentence</span> <span id="blue">with</span> <b><span id="green">HTML tags!</span></b>')
+            });
+
+            //.val()
+            $(".val_button").click(function(){
+                console.log($('.val_text').val());
+            });
+
+            $('.get_info').click(function(){
+                var get_height = $('img').attr('height')
+                var get_width = $('img').attr('width')
+                console.log("The image height is " + get_height + ".")
+                console.log("The image width is " + get_width + ".")
+            });
+
+            //.attr()
+            $('.expand').click(function(){
+                set_height = $('img').attr('height',300)
+                set_width = $('img').attr('width',300)
+            });
+
+            $('.contract').click(function(){
+                set_height = $('img').attr('height',50)
+                set_width = $('img').attr('width',50)
+            });
+        });
+
+    </script>
+
+</head>
+<body>
+
+    <div id="container">
+        <div class="content">
+            <div class="textJQ">
+                <h1>Hide & Show</h1>
+                <button id="hide">Hide</button>
+                <button id="show">Show</button>
+                <p class = "hide">Click the button to hide and show a paragraphs!</p>
+           </div>
+           <div class="textJQ">
+                <h1>Toogle</h1>
+                <button id="toggle">Toggle</button>
+                <p class='toggle'>Click the button to toggle a new paragraph!</p>
+           </div>
+
+
+        <div class="content">
+            <h1>.slideDown()</h1>
+            <button class="slidedown">slideDown</button>
+            <p>Slides down to show a hidden element!</p>
+            <p id="slidehide" hidden>Oh hey... I was hiding ;)</p>
+        </div>
+        <div class="content">
+            <h1>.slideUp()</h1>
+            <button class="slideup">slideUp</button>
+            <p>Slides up to hide an element!</p>
+        </div>
+        <div class="content">
+            <h1>.slideToggle()</h1>
+            <button class="slidetoggle">slideToggle</button>
+            <p>Toggles between slide up and down to hide and show an element</p>
+        </div>
+
+
+        <div class="content">
+            <h1>Fade In</h1>
+            <p> My name is Letícia</p>
+            <p id="fadesin" hidden>And I'm from Brazil.</p>
+            <button class="fadeIn">Click to fade in a hidden element</button>
+        </div>
+        <div class="content">
+            <h1>Fade Out</h1>
+            <p>I can hide an element with an animation</p>
+            <p id="fadeOut">Are you ready? I will fade out in 3, 2, 1 ...</p>
+            <button class="fadeOut">Click here</button>
+        </div>
+        <div class="content">
+            <h1>Add Class</h1>
+            <p>I can add a class to an element</p>
+            <p id="addClass">My text will turn red.</p>
+            <button class="addClass">Click to add a red class to the p tag</button>
+        </div>
+
+
+        <div class="content">
+            <h1 id="append"> Before, After, Append</h1>
+            <p id="specialp">Click the Before button to add the jquery image before this paragraph.  Click the paragraph to add the jquery logo after this paragraph.  Click the header to add the jquery logo to the header.</p>
+            <button id="pbefore">Before</button>
+        </div>
+
+
+        <div class="content">
+            <h1>.text()</h1>
+            <p class="change_text">Here I will demonstrate how one can change this text!</p>
+            <button class="text">Click</button>
+        </div>
+
+        <div class="content">
+            <h1>.html()</h1>
+            <p class="change_html">This will demonstrate how to change text using HTML tags!</p>
+            <button class="html">Click</button>
+        </div>
+
+        <div class="content">
+            <h1>.val()</h1>
+            <p>See what gets outputted in the console window!</p>
+            <textarea class="val_text"></textarea>
+            <button class="val_button">Click</button>
+        </div>
+        <div class="content">
+            <h1>.attr()</h1>
+            <p>Get the height and width information!</p>
+        <p>Click to expand or contract the image!</p>
+        <img src="jQuery.jpg" height=100 width=100 alt="">
+        <br><br>
+        <button class="get_info">Get Dimensions of Image!</button>
+        <button class="expand">Expand!</button>
+        <button class="contract">Contract!</button>
+        </div>
+
+    </div>    
+    
+</body>
+</html>

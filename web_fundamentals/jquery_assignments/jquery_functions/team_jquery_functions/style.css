@@ -30,33 +30,18 @@
         margin: 10px;
         padding: 5px;
     }
-
-.pinkify {
-    color: #d85180;
-    font-weight: 600;
-    font-style: italic;
+.red {
+    color: red;
 }
-
-.white {
-    color: white;
-    font-weight: 600;
-    font-style: italic;
+#green {
+    color: green;
 }
-
+#blue {
+    color: blue;
+}
 #slidehide {
     display: none;
 }
-
 #fadesin {
     display: none;
-}
-
-.story {
-    font-weight: 600;
-    font-style: italic;
-}
-
-#val {
-    background: white;
-    height: 20px;
 }
