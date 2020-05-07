@@ -1,0 +1,247 @@
+1) pip install Django==1.11.9
+
+	Output: 
+		Collecting Django==1.11.9
+	 	 Downloading Django-1.11.9-py2.py3-none-any.whl (6.9 MB)
+	 	    |████████████████████████████████| 6.9 MB 2.8 MB/s
+		Collecting pytz
+		  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+   		  |████████████████████████████████| 510 kB 20.9 MB/s
+		Installing collected packages: pytz, Django
+		Successfully installed Django-1.11.9 pytz-2020.1
+	Explanation: 
+		- download of Django packages; Django is a python web framework
+
+
+
+2) pip list
+	Output:
+		Package    Version
+		---------- -------
+		Django     1.11.9
+		pip        20.1
+		pytz       2020.1
+		setuptools 41.2.0
+	Expl:
+		- list of all of the packages installed within this virtualenv
+
+
+
+3) deactivate 
+	Output: 
+		(none, changes the prefix on the terminal directory)
+	Expl: 
+		- deactivates virtualenv and returns you to the pwd
+
+
+
+4) pip3 list 
+	Output:
+
+Package                  Version
+------------------------ ----------
+asgiref                  3.2.3
+astroid                  2.3.3
+attrs                    19.3.0
+Automat                  0.8.0
+beautifulsoup4           4.9.0
+bs4                      0.0.1
+cachetools               4.0.0
+certifi                  2019.11.28
+cffi                     1.13.2
+chardet                  3.0.4
+constantly               15.1.0
+cryptography             2.8
+cssselect                1.1.0
+Django                   3.0.2
+djangorestframework      3.11.0
+google-api-core          1.16.0
+google-auth              1.11.0
+google-cloud-bigquery    1.23.1
+google-cloud-core        1.2.0
+google-resumable-media   0.5.0
+googleapis-common-protos 1.51.0
+hyperlink                19.0.0
+idna                     2.8
+incremental              17.5.0
+isort                    4.3.21
+lazy-object-proxy        1.4.3
+lxml                     4.5.0
+mccabe                   0.6.1
+parsel                   1.5.2
+pbr                      5.4.4
+pip                      19.3.1
+Protego                  0.1.16
+protobuf                 3.11.2
+pyasn1                   0.4.8
+pyasn1-modules           0.2.8
+pycparser                2.19
+PyDispatcher             2.0.5
+PyHamcrest               2.0.0
+pylint                   2.4.4
+pyOpenSSL                19.1.0
+pytz                     2019.3
+queuelib                 1.5.0
+requests                 2.22.0
+rsa                      4.0
+Scrapy                   1.8.0
+service-identity         18.1.0
+setuptools               42.0.2
+six                      1.14.0
+soupsieve                2.0
+sqlparse                 0.3.0
+stevedore                1.31.0
+Twisted                  19.10.0
+urllib3                  1.25.8
+virtualenv               16.7.9
+virtualenv-clone         0.5.3
+virtualenvwrapper        4.8.4
+w3lib                    1.21.0
+wheel                    0.33.6
+wrapt                    1.11.2
+zope.interface           4.7.1
+
+
+	Explanation:
+		- I actually have more listed because I have done projects in Django 			before, some within a virtualenv, others were not within a virtualenv. So 		there is a lot more on my computer than someone who hasn't installed 			python or other packages before. As you can see I have a few already.
+
+
+
+4) source myEnvironments/py3Env/bin/activate 
+	Output: 
+		(py3Env) ➜  my_environments git:(master) ✗
+
+	Explanation: 
+		- reactivated, as indicated by the prefix on the terminal directory
+
+
+
+5) pip install Django==1.11.9 
+	Output: 
+		Requirement already satisfied: Django==1.11.9 in ./py3Env/lib/python3.8/		site-packages (1.11.9)
+		Requirement already satisfied: pytz in ./py3Env/lib/python3.8/site-			packages (from Django==1.11.9) (2020.1)
+		Could not build wheels for Django, since package 'wheel' is not installed.
+		Could not build wheels for pytz, since package 'wheel' is not installed.
+	
+
+	Explanation: 
+		- this means that the package has already been installed and therefore 			does not install it. I was not able to find out what "Could not build 			wheels..." meant, and assume it will come to light later.
+
+
+6)pip freeze (What's the difference between freeze and list?)
+	Output: 
+		Django==1.11.9
+		pytz==2020.1
+	
+	Explanation: 
+		- pip freeze and pip list both list out packages within an environment. 		The 2 main differences are 1) that pip freeze does not list out the 			packages that pip depends on (though they can be outputted with a -a 			flag); and 2) that pip freeze outputs the packages in requirements format 		that can be pasted into a requirements.txt file, which can be used later 		to reconstruct an environment.
+
+
+
+7) First cd into your Desktop directory (cd ~/Desktop), then run this command: pip freeze > requirements.txt. What do you see when you ls? What's inside this file?
+	Output:
+		- creates a new file called requirements.txt
+	Explanation:
+		- within this file I see a formatted list of case insensitive, 				alphabetically organized installed packages:
+
+a)if the virtualenv is still activated:
+
+Django==1.11.9
+pytz==2020.1
+
+
+b) if the virtualenv is deactivated:
+
+asgiref==3.2.3
+astroid==2.3.3
+attrs==19.3.0
+Automat==0.8.0
+beautifulsoup4==4.9.0
+bs4==0.0.1
+cachetools==4.0.0
+certifi==2019.11.28
+cffi==1.13.2
+chardet==3.0.4
+constantly==15.1.0
+cryptography==2.8
+cssselect==1.1.0
+Django==3.0.2
+djangorestframework==3.11.0
+google-api-core==1.16.0
+google-auth==1.11.0
+google-cloud-bigquery==1.23.1
+google-cloud-core==1.2.0
+google-resumable-media==0.5.0
+googleapis-common-protos==1.51.0
+hyperlink==19.0.0
+idna==2.8
+incremental==17.5.0
+isort==4.3.21
+lazy-object-proxy==1.4.3
+lxml==4.5.0
+mccabe==0.6.1
+parsel==1.5.2
+pbr==5.4.4
+Protego==0.1.16
+protobuf==3.11.2
+pyasn1==0.4.8
+pyasn1-modules==0.2.8
+pycparser==2.19
+PyDispatcher==2.0.5
+PyHamcrest==2.0.0
+pylint==2.4.4
+pyOpenSSL==19.1.0
+pytz==2019.3
+queuelib==1.5.0
+requests==2.22.0
+rsa==4.0
+Scrapy==1.8.0
+service-identity==18.1.0
+six==1.14.0
+soupsieve==2.0
+sqlparse==0.3.0
+stevedore==1.31.0
+Twisted==19.10.0
+urllib3==1.25.8
+virtualenv==16.7.9
+virtualenv-clone==0.5.3
+virtualenvwrapper==4.8.4
+w3lib==1.21.0
+wrapt==1.11.2
+zope.interface==4.7.1
+
+
+
+8) pip uninstall Django
+	Output:
+		Found existing installation: Django 1.11.9
+		Uninstalling Django-1.11.9:
+		  Would remove:
+		    /Users/montypreston/Desktop/DOJO/the_dojo/python_stack/				my_environments/py3Env/bin/django-admin
+		    /Users/montypreston/Desktop/DOJO/the_dojo/python_stack/				my_environments/py3Env/bin/django-admin.py
+		    /Users/montypreston/Desktop/DOJO/the_dojo/python_stack/				my_environments/py3Env/lib/python3.8/site-packages/Django-1.11.9.dist-			info/*
+		    /Users/montypreston/Desktop/DOJO/the_dojo/python_stack/				my_environments/py3Env/lib/python3.8/site-packages/django/*
+		Proceed (y/n)? y
+		  Successfully uninstalled Django-1.11.9
+
+	Explanation:
+		- uninstalled Django from within this virtualenv; asks for permission to 		proceed. 
+
+
+
+9) pip show Django
+	Output: 
+		WARNING: Package(s) not found: Django
+
+	Explanation:
+		- it was uninstalled, therefore, can't be found.
+
+
+
+10) pip search Flask
+	Output:
+		- a long list of packages that mach the query <Flask>
+
+	Explanation:
+		- search function outputs all PyPI packages whose name or summary contains 		<query>.
+
