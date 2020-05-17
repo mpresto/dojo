@@ -69,8 +69,8 @@ class User:
     def display_user_balance(self, acc_number):
         # print account number and balance
         print(
-            f'Account No {acc_number} has a balance of ' +
-            f'${self.user_accounts[acc_number].balance}'
+            f'Account No {acc_number} has a balance of '
+            + f'${self.user_accounts[acc_number].balance}'
             )
         return self
 
