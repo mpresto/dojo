@@ -1,0 +1,18 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#wrapper {
+    padding: 20px;
+    background-color: palegreen;
+    height: 900px;
+    width: 1200px;
+    animation: colorchange 30s infinite;
+    -webkit-animation: colorchange 30s infinite;
+}
+h2 {
+    color: white;
+    font-style: italic;
+}

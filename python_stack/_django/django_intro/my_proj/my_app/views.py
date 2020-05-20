@@ -3,7 +3,7 @@ from django.shortcuts import render, HttpResponse, redirect
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Placeholder to later display a list of all blogs")
+    return render(request, 'index.html')
 
 
 def create(request):
