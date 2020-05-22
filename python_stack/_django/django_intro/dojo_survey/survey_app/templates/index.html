@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <form action="/process" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Say Your Name:</label>
+                <input type="text" name="name" class="form-control" placeholder="Just your first name :)">
+            </div>
+            <div class="form-group">
+                <label for="location">Where you at? Pick a Dojo Location:</label><br>
+                    <input type="radio" name="location" value="losangeles">
+                    <label for="location">Los Angeles, CA</label><br>
+                    <input type="radio" name="location" value="dallas">
+                    <label for="location">Dallas, TX</label><br>
+                    <input type="radio" name="location" value="seattle">
+                    <label for="location">Seattle, WA</label>
+            </div>
+            <div class="form-group">
+                <label for="language">Favorite Language:</label>
+                <select name="language" class="form-control">
+                    <option selected>Choose...</option>
+                    <option value="python">Python</option>
+                    <option value="c++">C++</option>
+                    <option value="javascript">Javascript</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="comments">Comments</label>
+                <textarea class="form-control" name="comments" rows="2" placeholder="Like, totally optional"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+
+
+
+<!-- 
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Your Name</label>
+                <div class="col-sm-10">
+                    <input type="name" class="form-control" name="name" placeholder="(first and last)">
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <legend class="col-form-label col-sm-2 pt-0">Dojo Location:</legend>
+                <div class="col-sm-10">
+                    <select name="location" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                        <option selected>Choose...</option>
+                        <option value="los_angeles">Los Angeles, CA</option>
+                        <option value="dallas">Dallas, TX</option>
+                        <option value="seattle">Seattle, WA</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <legend class="col-form-label col-sm-2 pt-0">Favorite Language:</legend>
+                <div class="col-sm-10">
+                    <select name="language" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                        <option selected>Choose...</option>
+                        <option value="python">Python</option>
+                        <option value="javascript">Javascript</option>
+                        <option value="c++">C++</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="comments" class="col-sm-2 col-form-label">Comments:</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" name="comments" rows="3" placeholder="(optional)"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div> -->
+</body>
+</html>
