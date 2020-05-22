@@ -7,12 +7,22 @@ def index(request):
 
 
 def process(request):
-    if request.method == 'POST':  
-        context = { 
-            "name": request.POST['name'],
-            "location": request.POST['location'],
-            "language": request.POST['language'],
-            "comments": request.POST['comments'],
+    # capture POST data and redirect to /results
+    request.session['name'] = request.POST['name']
+    request.session['location'] = request.POST['location']
+    request.session['language'] = request.POST['language']
+    request.session['comments'] = request.POST['comments']
+    
+    return redirect('/results')
+
+
+def results(request):
+    # got here from /process 
+    # render data captured from POST
+    context = { 
+            "name": request.session['name'],
+            "location": request.session['location'],
+            "language": request.session['language'],
+            "comments": request.session['comments'],
             }
-        return render(request, 'results.html', context)
-    return render(request, 'results.html')
+    return render(request, "results.html", context)
