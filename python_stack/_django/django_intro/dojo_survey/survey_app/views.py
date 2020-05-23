@@ -3,7 +3,7 @@ from django.shortcuts import render, HttpResponse, redirect
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    return render(request, '/survey/index.html')
 
 
 def process(request):
@@ -13,7 +13,7 @@ def process(request):
     request.session['language'] = request.POST['language']
     request.session['comments'] = request.POST['comments']
     
-    return redirect('/results')
+    return redirect('/survey/results')
 
 
 def results(request):
@@ -25,4 +25,4 @@ def results(request):
             "language": request.session['language'],
             "comments": request.session['comments'],
             }
-    return render(request, "results.html", context)
+    return render(request, "survey/results.html", context)

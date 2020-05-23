@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Word Generator</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            height: 300px;
+            margin: 0px auto;
+            background-color: rgb(11, 78, 80);
+        }
+        button {
+            background-color: palevioletred;
+        }
+        h1 {
+            margin: 20px auto;
+            width: 300px;
+            border: 2px solid white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>"It was like, soooo random." - site user, 2020</p>
+        <h2>Random Word: Attempt {{ request.session.counter }}</h2>
+        <h1>{{ request.session.random_string }}</h1>
+        <a href=""><button>Generate</button></a>    
+    </div>
+</body>
+</html>
