@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold!</title>
+
+    <style>
+        * {
+            margin: 0 auto;
+            padding: 0px;
+            font-family: sans-serif;
+        }
+        #container {
+            padding: 20px auto;
+        }
+        .mine-form {
+            display: inline-block;
+            padding: 10px;
+            margin: 20px;
+            height: 100px;
+            border: 2px solid navy;
+            text-align: center;
+        }
+        button, p{
+            margin: 0 auto;
+            padding: 5px;
+        }
+        button {
+            background-color: rgb(166, 203, 238);
+        }
+        #log {
+            padding: 20px;
+        }
+        #message {
+            color: red;
+            font-weight: 400;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>Welcome to Ninja Gold!</h2><br>
+        <a href="/reset"><button>Start New Game</button></a><br><br>
+        <form action="/take_bet" method="post">
+            {% csrf_token %}
+            <label for="guess">Guess the number of moves at which you will cross the 200 gold threshold:</label>
+            <input type="number" name="guess">
+            <button type="submit">Submit Bet!</button>
+        </form>
+        <br>
+        <hr>
+        <br>
+        <div id="bank">
+            <p>Your Gold: {{ request.session.gold }}</p>
+            <p>Your Guess: {{ request.session.guess }}</p>
+            <p>Your Moves: {{ request.session.move_count }}</p>
+            <p id="message">{{ request.session.message }}</p>
+        </div>
+        <form form action="/process_money" method="post" class="mine-form">
+            {% csrf_token %}
+            <h3>Farm</h3>
+            <p>(earns 10-20 gold)</p>
+            <input type="hidden" name="mine" value="farm">
+            <button type="submit">Find Gold!</button>
+        </form>
+        <form form action="/process_money" method="post" class="mine-form">
+            {% csrf_token %}
+            <h3>Cave</h3>
+            <p>(earns 5-10 gold)</p>
+            <input type="hidden" name="mine" value="cave">
+            <button type="submit">Find Gold!</button>
+        </form>
+        <form form action="/process_money" method="post" class="mine-form">
+            {% csrf_token %}
+            <h3>House</h3>
+            <p>(earns 2-5 gold)</p>
+            <input type="hidden" name="mine" value="house">
+            <button type="submit" >Find Gold!</button>
+        </form>
+        <form form action="/process_money" method="post" class="mine-form">
+            {% csrf_token %}
+            <h3>Casino</h3>
+            <p>(win or lose 0-50 gold)</p>
+            <input type="hidden" name="mine" value="casino">
+            <button type="submit">Find Gold!</button>
+        </form>
+        <div id="log">
+            <h4>Activities Log:</h4>
+            {% for log in request.session.logs %}
+                {{ log }}<br>
+            {% endfor %}
+        </div>
+    </div>
+    
+</body>
+</html>
