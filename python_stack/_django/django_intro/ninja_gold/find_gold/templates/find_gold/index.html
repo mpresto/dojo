@@ -42,8 +42,8 @@
 <body>
     <div id="container">
         <h2>Welcome to Ninja Gold!</h2><br>
-        <a href="/reset"><button>Start New Game</button></a><br><br>
-        <form action="/take_bet" method="post">
+        <a href="{% url 'reset' %}"><button>Start New Game</button></a><br><br>
+        <form action="{% url 'bet' %}" method="post">
             {% csrf_token %}
             <label for="guess">Guess the number of moves at which you will cross the 200 gold threshold:</label>
             <input type="number" name="guess">
@@ -58,28 +58,28 @@
             <p>Your Moves: {{ request.session.move_count }}</p>
             <p id="message">{{ request.session.message }}</p>
         </div>
-        <form form action="/process_money" method="post" class="mine-form">
+        <form form action="{% url 'process' %}" method="post" class="mine-form">
             {% csrf_token %}
             <h3>Farm</h3>
             <p>(earns 10-20 gold)</p>
             <input type="hidden" name="mine" value="farm">
             <button type="submit">Find Gold!</button>
         </form>
-        <form form action="/process_money" method="post" class="mine-form">
+        <form form action="{% url 'process' %}" method="post" class="mine-form">
             {% csrf_token %}
             <h3>Cave</h3>
             <p>(earns 5-10 gold)</p>
             <input type="hidden" name="mine" value="cave">
             <button type="submit">Find Gold!</button>
         </form>
-        <form form action="/process_money" method="post" class="mine-form">
+        <form form action="{% url 'process' %}" method="post" class="mine-form">
             {% csrf_token %}
             <h3>House</h3>
             <p>(earns 2-5 gold)</p>
             <input type="hidden" name="mine" value="house">
             <button type="submit" >Find Gold!</button>
         </form>
-        <form form action="/process_money" method="post" class="mine-form">
+        <form form action="{% url 'process' %}" method="post" class="mine-form">
             {% csrf_token %}
             <h3>Casino</h3>
             <p>(win or lose 0-50 gold)</p>
