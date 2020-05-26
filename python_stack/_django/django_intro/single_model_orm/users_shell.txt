@@ -1,0 +1,72 @@
+Users (Shell) Assignment 5/25/20
+
+1. Run the shell and import your User Model
+
+(djangoPy3Env) ➜  single_model_orm git:(master) ✗ python3 manage.py shell
+Python 3.7.7 (default, Mar 10 2020, 15:43:33)
+[Clang 11.0.0 (clang-1100.0.33.17)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+
+>>> from users_app.models import User
+
+
+2. Query: Create 3 new users
+
+>>> new_user_1 = User.objects.create(first_name="Monica", last_name="Geller", email_address="monica@friends.com", age=27)
+>>> new_user_2 = User.objects.create(first_name="Phoebe", last_name="Buffet", email_address="phoebe@friends.com", age=28)
+>>> new_user_3 = User.objects.create(first_name="Rachel", last_name="Green", email_address="rachel@friends.com", age=27)
+
+
+3. Query: Retrieve all the users
+
+>>> all_users = User.objects.all()
+
+
+4. Query: Retrieve the last user
+
+>>> last_user = User.objects.last()
+>>> print(last_user.first_name)
+
+
+5. Query: Retrieve the first user
+
+>>> first_user = User.objects.first()
+>>> print(first_user.first_name)
+
+
+6. Query Change the user with id=3 so their last name is Pancakes
+
+>>> from users_app.models import User
+>>> user_3 = User.objects.get(id=3)
+>>> user_3.last_name = "Pancakes"
+>>> print(user_3.last_name)
+Pancakes
+
+
+7. Query: Delete the user with id=2 from the database
+
+>>> user_2 = User.objects.get(id=2)
+>>> user_2.delete()
+(1, {'users_app.User': 1})
+
+
+8. Query: Get all the users, sorted by their first name
+
+>>> ordered = User.objects.order_by('first_name')
+>>> for u in ordered:
+...     print(u.first_name)
+...
+Monica
+Rachel
+
+
+9. BONUS Query: Get all the users, sorted by their first name in descending order
+
+>>> descending = User.objects.order_by('-first_name')
+>>> for u in descending:
+...     print(u.first_name)
+...
+Rachel
+Monica
+

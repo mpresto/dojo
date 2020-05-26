@@ -1,0 +1,102 @@
+1. Run the shell and import your models
+
+(djangoPy3Env) ➜  dojos_and_ninjas_proj git:(master) ✗ python3 manage.py shell
+Python 3.7.7 (default, Mar 10 2020, 15:43:33)
+[Clang 11.0.0 (clang-1100.0.33.17)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from dojo_ninjas_app.models import *
+
+
+2. Query: Create 3 new dojos
+
+>>> dojo_1 = Dojo.objects.create(name="Coding Tiger", city="Los Angeles", state="CA")
+>>> dojo_2 = Dojo.objects.create(name="Hackrobat House", city="Seattle", state="WA")
+>>> dojo_3 = Dojo.objects.create(name="MTV Monastery", city="Tulsa", state="OK")
+
+
+3. Query: Delete the 3 dojos you just created
+
+>>> all_dojos = Dojo.objects.all()
+>>> all_dojos.delete()
+(3, {'dojo_ninjas_app.Ninja': 0, 'dojo_ninjas_app.Dojo': 3})
+
+
+4. Query: Create 3 more dojos
+
+>>> dojo4 = Dojo.objects.create(name="Black Python", city="New York", state="NY")
+>>> dojo5 = Dojo.objects.create(name="Type-Kwan-Do", city="Miami", state="FL")
+>>> dojo6 = Dojo.objects.create(name="Django In Chains", city="Denver", state="CO")
+
+
+5. Query: Create 3 ninjas that belong to the first dojo
+
+>>> ninja1 = Ninja.objects.create(first_name="Monty", last_name="Python", dojo=Dojo.objects.get(id=4))
+>>> ninja2 = Ninja.objects.create(first_name="Sensei", last_name="Saul", dojo=Dojo.objects.get(id=4))
+>>> ninja3 = Ninja.objects.create(first_name="Numchuck", last_name="Hank", dojo=Dojo.objects.get(id=4))
+
+
+6. Query: Create 3 ninjas that belong to the second dojo
+
+>>> nin4 = Ninja.objects.create(first_name="Dwight", last_name="Schrute", dojo=Dojo.objects.get(id=5))
+>>> nin5 = Ninja.objects.create(first_name="Stanley", last_name="Hudson", dojo=Dojo.objects.get(id=5))
+>>> nin6 = Ninja.objects.create(first_name="Phyllis", last_name="Vance", dojo=Dojo.objects.get(id=5))
+
+
+7. Query: Create 3 ninjas that belong to the third dojo
+
+>>> nin7 = Ninja.objects.create(first_name="Kelly", last_name="Kapoor", dojo=Dojo.objects.get(id=6))
+>>> nin8 = Ninja.objects.create(first_name="Michael", last_name="Scott", dojo=Dojo.objects.get(id=6))
+>>> nin9 = Ninja.objects.create(first_name="Angela", last_name="Martin", dojo=Dojo.objects.get(id=6))
+
+
+8. Query: Retrieve all the ninjas from the first dojo
+
+>>> Dojo.objects.first().ninjas.all()
+<QuerySet [<Ninja: Ninja object (1)>, <Ninja: Ninja object (2)>, <Ninja: Ninja object (3)>]>
+
+
+9. Query: Retrieve all the ninjas from the last dojo
+
+>>> Dojo.objects.last().ninjas.all()
+<QuerySet [<Ninja: Ninja object (7)>, <Ninja: Ninja object (8)>, <Ninja: Ninja object (9)>]>
+
+
+10. Query: Retrieve the last ninja's dojo
+
+>>> Ninja.objects.last().dojo
+<Dojo: Dojo object (6)>
+
+
+11. Add a new text field called "desc" to your Dojo class
+
+(altered in modesl.py)
+
+
+12. Create and run the migration files to update the table in your database. If needed, provide a default value of "old dojo"
+
+>>> exit()
+(djangoPy3Env) ➜  dojos_and_ninjas_proj git:(master) ✗ python3 manage.py makemigrations
+You are trying to add a non-nullable field 'desc' to dojo without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> "old-dojo"
+Migrations for 'dojo_ninjas_app':
+  dojo_ninjas_app/migrations/0004_dojo_desc.py
+    - Add field desc to dojo
+(djangoPy3Env) ➜  dojos_and_ninjas_proj git:(master) ✗ python3 manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojo_ninjas_app, sessions
+Running migrations:
+  Applying dojo_ninjas_app.0004_dojo_desc... OK
+
+
+13. Query: Create a new dojo
+
+>>> new_dojo = Dojo.objects.create(name="Hoka House", city="Atlanta", state="GA", desc="new dojo")
+
