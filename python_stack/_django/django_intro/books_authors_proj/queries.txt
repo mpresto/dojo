@@ -1,0 +1,78 @@
+# Query: Create 5 books with the following names: C Sharp, Java, Python, PHP, Ruby  
+>>> b1 = Book.objects.create(title="C Sharp", desc="C Sharp book")
+>>> b2 = Book.objects.create(title="Java", desc="a book about Java")
+>>> b3 = Book.objects.create(title="Python", desc="a book about Python")
+>>> b4 = Book.objects.create(title="PHP", desc="a book about PHP")
+>>> b5 = Book.objects.create(title="Ruby", desc="a book about Ruby")
+
+
+# Query: Create 5 different authors: Jane Austen, Emily Dickinson, Fyodor Dostoevksy, William Shakespeare, Lau Tzu
+>>> a1 = Author.objects.create(first_name="Jane", last_name="Austen")
+>>> a2 = Author.objects.create(first_name="Emily", last_name='Dickinson')
+>>> a3 = Author.objects.create(first_name="Fyodor", last_name="Dostoevsky")
+>>> a4 = Author.objects.create(first_name="William", last_name="Shakespeare")
+>>> a5 = Author.objects.create(first_name="Lau", last_name="Tzu")
+
+# Add a new text field in the authors table called 'notes'.  
+(done in the model)
+
+# Create and run the migration files to update the table in your database.
+>> exit()
+(djangoPy3Env) ➜  books_authors_proj git:(master) ✗ python3 manage.py makemigrations
+You are trying to add a non-nullable field 'notes' to author without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 2
+(djangoPy3Env) ➜  books_authors_proj git:(master) ✗ python3 manage.py makemigrations
+Migrations for 'books_authors_app':
+  books_authors_app/migrations/0002_auto_20200529_0339.py
+    - Add field notes to author
+(djangoPy3Env) ➜  books_authors_proj git:(master) ✗ python3 manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, books_authors_app, contenttypes, sessions
+Running migrations:
+  Applying books_authors_app.0002_auto_20200529_0339... OK
+
+# Query: Change the name of the C Sharp book to C#  
+>>> b1.title = "C#"
+
+
+# Query: Change the first name of the 4th author to Bill  
+>>> a4.first_name = "Bill"
+
+
+# Query: Assign the first author to the first 2 books  
+>>> a1.books.add(b1, b2)
+
+
+# Query: Assign the second author to the first 3 books  
+>>> a2.books.add(b1, b2, b3)
+
+
+# Query: Assign the third author to the first 4 books  
+>>> a3.books.add(b1, b2, b3, b4)
+
+
+# Query: Assign the fourth author to the first 5 books (or in other words, all the books)  
+>>> a4.books.add(b1, b2, b3, b4, b5)
+
+
+# Query: Retrieve all the authors for the 3rd book  
+>>> b3.authors.all()
+
+
+# Query: Remove the first author of the 3rd book
+>>> b3.authors.remove(Author.objects.get(id=2)) 
+
+
+# Query: Add the 5th author as one of the authors of the 2nd book  
+>>> b2.authors.add(a5)
+
+
+# Query: Find all the books that the 3rd author is part of  
+>>> a3.books.all()
+
+
+# Query: Find all the authors that contributed to the 5th book  Submit your .txt file that contains all the queries you ran in the shell
+>>> b5.authors.all()
