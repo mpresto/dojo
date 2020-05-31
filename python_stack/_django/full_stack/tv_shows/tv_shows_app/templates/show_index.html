@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shows Homepage</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div id="content">
+        <h1>All Shows</h1>
+        <table>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Network</th>
+            <th>Release Date</th>
+            <th>Actions</th>
+            {% for show in all_shows %}
+            <tr>
+                <td>{{ show.id }}</td>
+                <td>{{ show.title }}</td>
+                <td>{{ show.network }}</td>
+                <td>{{ show.release_date }}</td>
+                <td><a href="{% url 'detail' show.id %}">Show</a> | 
+                    <a href="{% url 'edit' show.id %}">Edit</a> | 
+                    <a href="{% url 'delete' show.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="shows/new">Add A New Show</a>
+    </div>   
+</body>
+</html>

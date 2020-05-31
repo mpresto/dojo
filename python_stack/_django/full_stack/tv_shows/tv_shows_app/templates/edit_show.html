@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Show</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div id="content">
+        <h1>Edit Show</h1>
+        <form action="{% url 'update' this_show.id %}" method="POST">
+            {% csrf_token %}
+            Title: <input type="text" name="title" placeholder="{{ this_show.title }}">
+            Network: <input type="text" name="network" placeholder="{{ this_show.network }}">
+            Release Date: <input type="date" name="release_date" placeholder="{{ this_show.release_date }}">
+            Description: <input type="text" name="desc" placeholder="{{ this_show.description }}">
+            <a href=""><button>Update</button></a>
+        </form>
+        <a href="{% url 'detail' this_show.id %}">Go to Show</a>
+    </div>
+    
+</body>
+</html>
