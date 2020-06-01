@@ -11,10 +11,10 @@
         <h1>Edit Show</h1>
         <form action="{% url 'update' this_show.id %}" method="POST">
             {% csrf_token %}
-            Title: <input type="text" name="title" placeholder="{{ this_show.title }}">
-            Network: <input type="text" name="network" placeholder="{{ this_show.network }}">
-            Release Date: <input type="date" name="release_date" placeholder="{{ this_show.release_date }}">
-            Description: <input type="text" name="desc" placeholder="{{ this_show.description }}">
+            Title: <input type="text" name="title" value="{{ this_show.title }}">
+            Network: <input type="text" name="network" value="{{ this_show.network }}">
+            Release Date: <input type="date" name="release_date" value="{{ this_show.release_date|date:'Y-m-d' }}">
+            Description: <input type="text" name="desc" value="{{ this_show.description }}">
             <a href=""><button>Update</button></a>
         </form>
         <a href="{% url 'detail' this_show.id %}">Go to Show</a>
