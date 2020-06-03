@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .models import Show
+from django.contrib import messages
+from .models import Show, ShowManager
 
 
 # Create your views here.
@@ -25,7 +26,13 @@ def add_show(request):
 
 def process_show(request):
     # from /create, POST form data to db and redirect to show detail page
-    if request.method == "POST":
+    errors = Show.objects.validator(request.POST)
+    print(errors)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('add_new')
+    else:
         new_show = Show.objects.create(
             title=request.POST['title'],
             network=request.POST['network'],
@@ -33,6 +40,7 @@ def process_show(request):
             description=request.POST['desc']
             )
         print(f'Added {new_show.id} to the database')
+        messages.success(request, "Successfully added new show!")
     return redirect('home')
 
 
@@ -55,12 +63,20 @@ def edit_show(request, id):
 def update_show(request, id):
     # process edit form data, update db, redirect home
     show_to_update = Show.objects.get(id=id)
-    if request.method == "POST":
+    errors = Show.objects.validator(request.POST)
+    print(errors)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('edit', id=id)
+    else:
         show_to_update.title = request.POST['title']
         show_to_update.network = request.POST['network']
         show_to_update.release_date = request.POST['release_date']
         show_to_update.description = request.POST['desc']
         show_to_update.save()
+        print(f'Updated {show_to_update.id} in the database')
+        messages.success(request, "Successfully updated show!")
     return redirect('home')
 
 

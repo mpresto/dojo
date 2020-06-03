@@ -8,7 +8,16 @@
 </head>
 <body>
     <div id="content">
+        {% extends "base.html" %}
+        {% block content %}
         <h1>Add a New Show</h1>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li> 
+            {% endfor %}
+        </ul>
+            {% endif %}
         <form action="/shows/create" method="POST">
             {% csrf_token %}
             Title: <input type="text" name="title">
@@ -18,5 +27,6 @@
             <a href=""><button>Create</button></a>
         </form>
     </div>
+    {% endblock }
 </body>
 </html>

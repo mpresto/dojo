@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
+    {% extends "base.html" %}
+    {% block content %}
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li> 
+        {% endfor %}
+    </ul>
+        {% endif %}
+
     <div id="content">
         <h1>Edit Show</h1>
         <form action="{% url 'update' this_show.id %}" method="POST">
@@ -15,10 +26,10 @@
             Network: <input type="text" name="network" value="{{ this_show.network }}">
             Release Date: <input type="date" name="release_date" value="{{ this_show.release_date|date:'Y-m-d' }}">
             Description: <input type="text" name="desc" value="{{ this_show.description }}">
-            <a href=""><button>Update</button></a>
+            <input type="submit" value="Update">
         </form>
         <a href="{% url 'detail' this_show.id %}">Go to Show</a>
     </div>
-    
+    {% endblock %}
 </body>
 </html>
