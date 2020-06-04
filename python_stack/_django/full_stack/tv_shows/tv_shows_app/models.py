@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime, date
 
 
 # Create your models here.
@@ -10,17 +11,20 @@ class ShowManager(models.Manager):
             errors['title'] = "Title must be greater than 2 characters."
         if len(postData['network']) < 3:
             errors['network'] = "Network should be at least 3 characters."
-        # if release date is in the future....
-            # errors['release_date'] = "Release date must be in the past."
-        if len(postData['desc']) < 10:
+        if len(postData['desc']) != 0 and len(postData['desc']) < 10:
             errors['desc'] = "Description should be at least 10 characters."
+        if postData['release_date'] == '':
+            errors['no_date'] = "Please enter a valid date."
+        if postData['release_date'] > date.today().strftime('%Y-%m-%d'):
+            errors['future_date'] = "Release date must be in the past."
+        print(postData['release_date'])
         return errors
 
 class Show(models.Model):
     title = models.CharField(max_length=255)
     network = models.CharField(max_length=45)
     release_date = models.DateTimeField()
-    description = models.TextField()
+    description = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = ShowManager()

@@ -68,7 +68,7 @@ def update_show(request, id):
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-        return redirect('edit', id=id)
+        return redirect('edit', id=id) # with no named routes, try: {id}/edit
     else:
         show_to_update.title = request.POST['title']
         show_to_update.network = request.POST['network']
