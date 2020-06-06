@@ -26,6 +26,8 @@
             Network: <input type="text" name="network" value="{{ this_show.network }}">
             Release Date: <input type="date" name="release_date" value="{{ this_show.release_date|date:'Y-m-d' }}">
             Description: <input type="text" name="desc" value="{{ this_show.description }}">
+            <input type="hidden" value="{{this_show.id}}" name="id">
+            <input type="hidden" value="update" name="form_type">
             <input type="submit" value="Update">
         </form>
         <a href="{% url 'detail' this_show.id %}">Go to Show</a>

@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <div id="content">
-        {% extends "base.html" %}
-        {% block content %}
+    <div id="content"></div>
+    {% extends "base.html" %}
+    {% block content %}
         <h1>Add a New Show</h1>
         {% if messages %}
         <ul class="messages">
@@ -24,9 +24,10 @@
             Network: <input type="text" name="network">
             Release Date: <input type="date" name="release_date">
             Description: <input type="text" name="desc">
+            <input type="hidden" value="create" name="form_type">
             <a href=""><button>Create</button></a>
         </form>
     </div>
-    {% endblock }
+    {% endblock %}
 </body>
 </html>
