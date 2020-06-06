@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="wrapper container">
+        <h3 class="display-4">Add a New Comment</h3>
+
+        <div class="container">
+            <form action="/add_comment/{{this_course.id}}" method="POST" mb-4>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="content">Leave a Comment:</label>
+                    <input class="form-control w-50" type="text" name="content">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <br><br>
+    <div class="wrapper container" mt-4>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Date Added</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for comment in this_course.comments.all %}
+                <tr>
+                    <td>{{comment.comment}}</td>
+                    <td>{{comment.created_at}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+    
+</body>
+</html>
