@@ -21,9 +21,15 @@ def add_course(request):
     return redirect('home')
 
 
-def delete_course(request):
-    pass
+def delete_course(request, id):
+    context = {
+        'this_course': Course.objects.get(id=id)
+    }
+    return render(request, 'delete.html', context)
 
 
-def process_delete(request):
-    pass
+def process_delete(request, id):
+    delete_me = Course.objects.get(id=id)
+    delete_me.delete()
+    print('Deleted course from the database.')
+    return redirect('home')
