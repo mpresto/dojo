@@ -18,7 +18,7 @@
                 <ul class="navbar-nav mr-auto">
                     
                 </ul>
-                <span class="navbar-text">Welcome, (username) <a class="btn btn-sm btn-light text-dark" href="#"
+                <span class="navbar-text">Welcome, {{request.session.username}} <a class="btn btn-sm btn-light text-dark" href="#"
                         role="button">Log out</a></span>
             </div>
         </nav>
@@ -32,7 +32,7 @@
         <div class="container">
             <div class="jumbotron">
                 <h1 class="display-4">Success!</h1>
-                <p class="lead">Welcome, it's great to have you here, (name)!</p>
+                <p class="lead">Welcome, it's great to have you here, {{request.session.username}}!</p>
             </div>
         </div>
     </div>
