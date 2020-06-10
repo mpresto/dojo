@@ -18,8 +18,8 @@
                 <ul class="navbar-nav mr-auto">
                     
                 </ul>
-                <span class="navbar-text">Welcome, {{request.session.username}} <a class="btn btn-sm btn-light text-dark" href="#"
-                        role="button">Log out</a></span>
+                <span class="navbar-text">Welcome, {{request.session.username}} <a class="btn btn-sm btn-light text-dark"
+                    href="/logout" role="button">Log out</a></span>
             </div>
         </nav>
         {% if messages %}

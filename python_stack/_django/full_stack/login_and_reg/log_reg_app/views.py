@@ -12,10 +12,17 @@ def index(request):
 
 
 def login(request):
-    # validate login
-    # include hashing
-    # redirect to success page
-    return redirect('/success')
+    # validate login credentials
+    user = User.objects.filter(email=request.POST['email'])  # check if user in db
+    if user:  # if user returned
+        logged_user = user[0]
+        # check password match
+        if bcrypt.checkpw(request.POST['password'].encode(), logged_user.password.encode()):
+            request.session['username'] = logged_user.first_name  # save user in sessions
+            return redirect('/success')  # if match, redirect to success page
+    # if we didn't find a match, display errors, redirect to login page
+    messages.error(request, "Email and password do not match.")
+    return redirect('/')
 
 
 def register(request):
@@ -48,7 +55,12 @@ def register(request):
 
 def success(request):
     # render success page
-    context = {
-    }
-    return render(request, 'success.html', context)
+    if 'username' not in request.session:
+        return redirect('/')
+    return render(request, 'success.html')
 
+
+def logout(request):
+    # logout (clear session) and redirect to login page
+    request.session.flush()
+    return redirect("/")

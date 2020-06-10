@@ -1,7 +1,11 @@
 from __future__ import unicode_literals
-from datetime import date
+from datetime import datetime, date
+from django.utils.dateformat import format
+
 import re
 from django.db import models
+
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 
 # Create your models here.
@@ -15,21 +19,39 @@ class UserManager(models.Manager):
             errors["last_name"] = "Last name should be at least 2 characters."     
         if postData['bday'] == '':
             errors['no_bday'] = "Please enter your birthday."
+        if postData['bday'] > date.today().strptime('%Y-%m-%d'):
+            errors['bday_past'] = "Birthday must be in the past."
+        print(postData['bday'])
+        
+        # today = date.today()
+        # dob = postData['bday']
+        # dob = format(postData['bday'].mydatefield, 'U')
+
+        # if (dob + 13) > today.format:
+        #     errors['under_13'] = "Must be at least 13 years old to register."
+
         #bday prints as : 1961-02-02
         # dob = postData['bday']
         # today = date.today()
         # if (dob.year + 13, dob.month, dob.day) > (today.year, today.month, today.day):
         #     errors['under_13'] = "Must be at least 18 years old to register"
 
-        EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+# CLAIRE's CODE:
+        # date = datetime.strptime(postData['bday'], "%Y-%m-%d")
+        # today = date.today
+        #     errors["bday"] = "Birthday must be in the past"
+
         if not EMAIL_REGEX.match(postData['email']):    # test whether a field matches the pattern            
             errors['email'] = ("Please enter a valid email address.")    
+        result = User.objects.filter(email=postData['email'])
+        if len(result) > 0:
+            errors['uniqueness'] = "This email address is already registered."
         if len(postData['password']) < 8:
             errors['pw_length'] = "Password should be at least 8 characters."
         if postData['password'] != postData['conf_password']:
             errors['pw_match'] = "Passwords must match."
         return errors
-
+ 
 
 class User(models.Model):
     first_name = models.CharField(max_length=45)
@@ -39,5 +61,5 @@ class User(models.Model):
     password = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    objects = UserManager()
 
+    objects = UserManager()
