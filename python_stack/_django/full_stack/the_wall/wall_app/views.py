@@ -10,7 +10,7 @@ def index(request):
     if 'user_id' not in request.session:  # send back to login
         return redirect('/login')
     context = {
-        'all_messages': Message.objects.all()
+        'all_messages': Message.objects.all(),
     }
     return render(request, 'wall/index.html', context)
 
@@ -25,7 +25,15 @@ def post_message(request):
 
 
 def post_comment(request):
-    pass
+    logged_user = User.objects.get(id=request.session['user_id'])
+    this_message = Message.objects.get(id=request.POST['message_id'])
+    comment = Comment.objects.create(
+        user=logged_user,
+        message=this_message,
+        content=request.POST['content']
+    )
+    return redirect('/wall')
+
 
 
 def delete_message(request):
