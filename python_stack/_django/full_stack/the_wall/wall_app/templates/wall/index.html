@@ -18,8 +18,8 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
                 </ul>
-                <span class="navbar-text">Welcome back, {{ request.session.username }} <a class="btn btn-sm btn-light text-dark" href="#"
-                    role="button">Log out</a></span>
+                <span class="navbar-text">Welcome back, {{ request.session.username }}
+                    <a class="btn btn-sm btn-light text-dark" href="/login/logout" role="button">Log out</a></span>
         </div>
     </nav>
         {% if messages %}
@@ -46,9 +46,19 @@
             <div class="col p-4 m-1">
                 {% for message in all_messages reversed %}
                 <h4 class="d-inline mr-5">{{message.user.first_name}} <small>{{message.created_at}}</small></h4>
-                <p>{{ message.content }}</p>
+                <p>{{ message.content }}
+                {% if message.user.id == request.session.user_id %}
+                    <form action="destroy" method="POST">
+                        {% csrf_token %}
+                        <div>
+                            <input type="hidden" name="message_id" value="{{ message.id }}">
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-danger mb-5">Delete</button>
+                    </form>
+                    {% endif %}
+                    </p>
                     {% for comment in message.has_comments.all reversed %}
-                    <div class="col p-4 m-1">
+                    <div class="col p-4 mt-1">
                         <p class="text-secondary">{{ comment.user.first_name }} <small>{{ comment.user.created_at }}</small></p>
                         <p class="text-secondary"><small>{{ comment.content }}</small></p>
                     </div>

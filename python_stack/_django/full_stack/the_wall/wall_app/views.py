@@ -35,7 +35,8 @@ def post_comment(request):
     return redirect('/wall')
 
 
-
 def delete_message(request):
-    pass
+    message_to_delete = Message.objects.get(id=request.POST['message_id'])
+    message_to_delete.delete()
+    return redirect('/wall')
 

@@ -20,7 +20,7 @@ def login(request):
         logged_user = user[0]
         # check password match
         if bcrypt.checkpw(request.POST['password'].encode(), logged_user.password.encode()):
-            request.session['username'] = logged_user.first_name  # save user in sessions
+            request.session['username'] = logged_user.first_name  # save user info in sessions
             request.session['user_id'] = logged_user.id
             return redirect('/wall')  # if match, redirect to success page
     # if we didn't find a match, display errors, redirect to login page
@@ -49,20 +49,13 @@ def register(request):
         )
         messages.success(request, "Registration successful!")
         print("Created a new user")
-        request.session['username'] = new_user.first_name  # save user in sessions
+        request.session['username'] = new_user.first_name  # save user info in sessions
         request.session['user_id'] = new_user.id
         # redirect to a success route
         return redirect('/wall')
 
 
-# def success(request):
-#     # render success page
-#     if 'user_name' not in request.session:
-#         return redirect('/')
-#     return render(request, 'success.html')
-
-
-# def logout(request):
-#     # logout (clear session) and redirect to login page
-#     request.session.flush()
-#     return redirect('/login')
+def logout(request):
+    # logout (clear session) and redirect to login page
+    request.session.flush()
+    return redirect('/login')
