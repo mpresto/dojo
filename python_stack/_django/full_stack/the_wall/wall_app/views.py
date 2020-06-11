@@ -1,5 +1,9 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
+
+from datetime import datetime, timedelta
+from django.utils import timezone
+
 from .models import Message, Comment
 from login_app.models import User
 
@@ -37,6 +41,17 @@ def post_comment(request):
 
 def delete_message(request):
     message_to_delete = Message.objects.get(id=request.POST['message_id'])
+    # get times to compare:
+    post_created = message_to_delete.created_at
+    time_now = timezone.now()
+    # calculate time difference
+    delta = (time_now - post_created)
+    time_passed = delta.seconds / 60  # divide by 60s/m to get minutes
+
+    if time_passed > 30:
+        messages.error(request, "This post is too old to delete.")
+        return redirect('/wall')
+
     message_to_delete.delete()
     return redirect('/wall')
 
