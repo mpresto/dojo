@@ -21,7 +21,7 @@ def login(request):
         # check password match
         if bcrypt.checkpw(request.POST['password'].encode(), logged_user.password.encode()):
             request.session['username'] = logged_user.first_name  # save user in sessions
-            request.session['userid'] = logged_user.id
+            request.session['user_id'] = logged_user.id
             return redirect('/wall')  # if match, redirect to success page
     # if we didn't find a match, display errors, redirect to login page
     messages.error(request, "Email and password do not match.")
@@ -34,7 +34,7 @@ def register(request):
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-        return redirect('/')
+        return redirect('/wall')
     else:  # if no errors, create new user
         # hash password:
         password = request.POST['password']
@@ -50,7 +50,7 @@ def register(request):
         messages.success(request, "Registration successful!")
         print("Created a new user")
         request.session['username'] = new_user.first_name  # save user in sessions
-        request.session['userid'] = new_user.id
+        request.session['user_id'] = new_user.id
         # redirect to a success route
         return redirect('/wall')
 
