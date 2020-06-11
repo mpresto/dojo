@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 from datetime import datetime, date
 from django.utils.dateformat import format
-
+import time
 import re
 from django.db import models
 
@@ -19,23 +19,20 @@ class UserManager(models.Manager):
             errors["last_name"] = "Last name should be at least 2 characters."     
         if postData['bday'] == '':
             errors['no_bday'] = "Please enter your birthday."
-        if postData['bday'] > date.today().strptime('%Y-%m-%d'):
+        if postData['bday'] > date.today().strftime('%Y-%m-%d'):
             errors['bday_past'] = "Birthday must be in the past."
-        print(postData['bday'])
+        print(f"postData['bday']: {postData['bday']}")
+
+        today = date.today()
+        min_bday = datetime(today.year-13, today.month, today.day)
+        parsed_bday = datetime.strptime(postData['bday'], "%Y-%m-%d")
+        if min_bday < parsed_bday:
+            print("This person is too young")
+        print(f"parsed bday: {parsed_bday}")
+        print(f"min_bday: {min_bday}")
+
         
-        # today = date.today()
-        # dob = postData['bday']
-        # dob = format(postData['bday'].mydatefield, 'U')
-
-        # if (dob + 13) > today.format:
-        #     errors['under_13'] = "Must be at least 13 years old to register."
-
-        #bday prints as : 1961-02-02
-        # dob = postData['bday']
-        # today = date.today()
-        # if (dob.year + 13, dob.month, dob.day) > (today.year, today.month, today.day):
-        #     errors['under_13'] = "Must be at least 18 years old to register"
-
+                
 # CLAIRE's CODE:
         # date = datetime.strptime(postData['bday'], "%Y-%m-%d")
         # today = date.today
