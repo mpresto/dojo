@@ -17,32 +17,23 @@ class UserManager(models.Manager):
             errors["first_name"] = "First name should be at least 2 characters."
         if len(postData['lname']) < 2:
             errors["last_name"] = "Last name should be at least 2 characters."     
+        
         if postData['bday'] == '':
             errors['no_bday'] = "Please enter your birthday."
         if postData['bday'] > date.today().strftime('%Y-%m-%d'):
             errors['bday_past'] = "Birthday must be in the past."
-        print(f"postData['bday']: {postData['bday']}")
-
         today = date.today()
         min_bday = datetime(today.year-13, today.month, today.day)
         parsed_bday = datetime.strptime(postData['bday'], "%Y-%m-%d")
         if min_bday < parsed_bday:
-            print("This person is too young")
-        print(f"parsed bday: {parsed_bday}")
-        print(f"min_bday: {min_bday}")
-
-        
-                
-# CLAIRE's CODE:
-        # date = datetime.strptime(postData['bday'], "%Y-%m-%d")
-        # today = date.today
-        #     errors["bday"] = "Birthday must be in the past"
+            errors['under_13'] = "Must be 13 to register."
 
         if not EMAIL_REGEX.match(postData['email']):    # test whether a field matches the pattern            
             errors['email'] = ("Please enter a valid email address.")    
         result = User.objects.filter(email=postData['email'])
         if len(result) > 0:
             errors['uniqueness'] = "This email address is already registered."
+        
         if len(postData['password']) < 8:
             errors['pw_length'] = "Password should be at least 8 characters."
         if postData['password'] != postData['conf_password']:
