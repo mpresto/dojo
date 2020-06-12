@@ -69,7 +69,6 @@ def update_book(request, id):
     return redirect(f'/books/{this_book.id}')
 
 
-
 def delete_book(request, id):
     this_book = Book.objects.get(id=id)
     this_book.delete()

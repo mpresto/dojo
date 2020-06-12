@@ -22,7 +22,7 @@
                 <span class="navbar-text"><a class="btn btn-sm btn-light text-dark" href="/logout" role="button">Log out</a></span>
             </div>
         </nav>
-        
+
         {% if messages %}
             <ul class="messages">    
                 {% for message in messages %}    
@@ -53,7 +53,7 @@
                     {% if logged_user not in book.liked_by.all %}
                         <a href="/books/favorite/{{book.id}}">Add to Favorites!</a>
                     {% else %}
-                        <p><small>This is one of your favorites!</small></p>
+                        <p><small>This is one of your favorites! | <a href="/books/destroy_favorite/{{book.id}}">Unfavorite</a></small></p>
                     {% endif %}
                 </div>
                 {% endfor %}

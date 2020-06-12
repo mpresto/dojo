@@ -51,7 +51,7 @@
                     </div>
                     <div class="form-group">
                         <label for="desc">Description:</label>
-                        <textarea class="form-control rounded-0" rows="3" name="desc">{{ this_book.desc }}</textarea>
+                        <textarea class="form-control rounded-0" rows="3" style="resize:none;" name="desc">{{ this_book.desc }}</textarea>
                     </div>
                     <!-- <input type="hidden" name="book_id" value="{{this_book.id}}"> -->
                     <button type="submit" class="btn btn-primary">Update</button></a>
@@ -60,24 +60,13 @@
                 {% endif %}
 
                 {% if this_book.uploaded_by != logged_user %}
-                <form action="/books/update" method="POST">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <h2>{{ this_book.title }}</h2>
-                    </div>
-                    <div class="form-group">
-                        <p>Added by: {{ this_book.uploaded_by.first_name }} {{ this_book.uploaded_by.last_name }}</p>
-                    </div>
-                    <div class="form-group">
-                        <p>Added on: {{ this_book.created_at }}</p>
-                    </div>
-                    <div class="form-group">
-                        <p>Last updated on {{ this_book.updated_at }}</p>
-                    </div>
-                    <div class="form-group">
-                        <p>{{ this_book.desc }}</p>
-                    </div>
-                </form>
+                <div class="form-group">
+                    <h2>{{ this_book.title }}</h2>
+                    <p>Added by: {{ this_book.uploaded_by.first_name }} {{ this_book.uploaded_by.last_name }}</p>
+                    <p>Added on: {{ this_book.created_at }}</p>
+                    <p>Last updated on {{ this_book.updated_at }}</p>
+                    <p>Description: {{ this_book.desc }}</p>
+                </div>
                 {% endif %}
             </div>
 
@@ -93,6 +82,9 @@
                 <ul>
                     <li>{{ user.first_name }} {{ user.last_name }}</li>
                 </ul>
+                {% endif %}
+                {% if logged_user not in this_book.liked_by.all %}
+                <a href="/books/favorite/{{this_book.id}}">Add to Favorites!</a>
                 {% endif %}
                 {% endfor %}
             </div>
