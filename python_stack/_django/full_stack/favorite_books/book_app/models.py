@@ -9,7 +9,7 @@ class BookManager(models.Manager):
         errors = {}
         if len(postData['title']) == '':
             errors['title'] = "Title cannot be empty."
-        if len(postData['desc']) < 2:
+        if len(postData['desc']) < 5:
             errors['desc'] = "Description must be at least 5 characters."     
         
         return errors

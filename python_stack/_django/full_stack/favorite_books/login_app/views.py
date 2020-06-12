@@ -55,4 +55,4 @@ def register(request):
 def logout(request):
     # logout (clear session) and redirect to login page
     request.session.flush()
-    return redirect('/login')
+    return redirect('')
