@@ -98,11 +98,14 @@ def remove_favorite(request, id):
     return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
 
-
-
 def user_detail(request, id):
     # render user detail page
-    pass
+    context = {
+        'logged_user': User.objects.get(id=id),
+        'all_books': Book.objects.all()
+    }
+    return render(request, 'book/user_detail.html', context)
+
 
 
 
