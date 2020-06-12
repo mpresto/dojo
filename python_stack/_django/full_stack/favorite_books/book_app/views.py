@@ -1,4 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.http import HttpResponseRedirect
+
 from django.contrib import messages
 from . import views
 from .models import Book
@@ -82,8 +84,9 @@ def add_favorite(request, id):
     this_book = Book.objects.get(id=id)
     this_book.liked_by.add(logged_user)
     print("added to favorites")
-    return redirect('/books')
-    pass
+    return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+
+
 
 
 def remove_favorite(request, id):
@@ -92,8 +95,9 @@ def remove_favorite(request, id):
     this_book = Book.objects.get(id=id)
     this_book.liked_by.remove(logged_user)
     print("removed from favorites")
-    return redirect(f'/books/{this_book.id}')
-    pass
+    return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+
+
 
 
 def user_detail(request, id):
