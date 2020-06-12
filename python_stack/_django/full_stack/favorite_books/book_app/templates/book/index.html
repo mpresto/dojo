@@ -18,9 +18,11 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
                 </ul>
+                <span class="navbar-text"><a class="navbar" href="/books">Home</a></span>
                 <span class="navbar-text"><a class="btn btn-sm btn-light text-dark" href="/logout" role="button">Log out</a></span>
-        </div>
-    </nav>
+            </div>
+        </nav>
+        
         {% if messages %}
             <ul class="messages">    
                 {% for message in messages %}    
@@ -43,15 +45,15 @@
                 </form>
             </div>
             <div class="col p-4 m-1">
+                <h2 class="display-7">All Books</h2>
                 {% for book in all_books %}
                 <div class="form-group">
                     <a href="/books/{{book.id}}"><h4 class="d-inline mr-5">{{book.title}}</h4></a>
                     <p>(added by {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }})</p>
-                    {% if book.uploaded_by.id == request.session.user_id %}
-                        <p><small>This is one of your favorites!</small></p>
-                    {% endif %}
                     {% if logged_user not in book.liked_by.all %}
-                        <a href="/books/favorite">Add to Favorites!</a>
+                        <a href="/books/favorite/{{book.id}}">Add to Favorites!</a>
+                    {% else %}
+                        <p><small>This is one of your favorites!</small></p>
                     {% endif %}
                 </div>
                 {% endfor %}

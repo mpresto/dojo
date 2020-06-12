@@ -33,6 +33,7 @@ def add_book(request):
             desc=request.POST['desc'],
         )
         print("Created new book.")
+        messages.success(request, "Added new book!")
         # add to user's favorites:
         new_book.liked_by.add(logged_user)
     # redirect to homepage
@@ -40,24 +41,59 @@ def add_book(request):
 
 
 def book_detail(request, id):
-    # render update form if logged_user = creator
-    # or render detail page
-    return HttpResponse('book detail page.')
+    # render book detail page
+    context = {
+        'this_book': Book.objects.get(id=id),
+        'logged_user': User.objects.get(id=request.session['user_id']),
+        'all_users': User.objects.all()
+    }
+    return render(request, 'book/book_detail.html', context)
 
 
-def update_book(request):
-    # process update form data
-    # redirect to ? home?
+def update_book(request, id):
+    this_book = Book.objects.get(id=id)
+    # check for errors:
+    errors = Book.objects.validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+    else:
+        # update book instance:
+        this_book.title=request.POST['title']
+        this_book.desc=request.POST['desc']
+        this_book.save()
+        messages.success(request, "Successfully updated book!")
+
+        # add to user's favorites:
+    # redirect to homepage
+    return redirect(f'/books/{this_book.id}')
+
+
+
+def delete_book(request, id):
+    this_book = Book.objects.get(id=id)
+    this_book.delete()
+    messages.success(request, "Book has been deleted")
+    return redirect('/books')
+
+
+def add_favorite(request, id):
+    # create favorite relationship
+    logged_user = request.session['user_id']
+    this_book = Book.objects.get(id=id)
+    this_book.liked_by.add(logged_user)
+    print("added to favorites")
+    return redirect('/books')
     pass
 
 
-def add_favorite(request):
-    # create new favorite relationship
-    pass
-
-
-def remove_favorite(request):
+def remove_favorite(request, id):
     # remove favorite relationship
+    logged_user = request.session['user_id']
+    this_book = Book.objects.get(id=id)
+    this_book.liked_by.remove(logged_user)
+    print("removed from favorites")
+    return redirect(f'/books/{this_book.id}')
     pass
 
 

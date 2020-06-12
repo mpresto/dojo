@@ -20,7 +20,7 @@ def login(request):
         if bcrypt.checkpw(request.POST['password'].encode(), logged_user.password.encode()):
             request.session['username'] = logged_user.first_name  # save user info in sessions
             request.session['user_id'] = logged_user.id
-            return redirect('/wall')  # if match, redirect to success page
+            return redirect('/books')  # if match, redirect to success page
     # if we didn't find a match, display errors, redirect to login page
     messages.error(request, "Email and password do not match.")
     return redirect('/')
@@ -55,4 +55,4 @@ def register(request):
 def logout(request):
     # logout (clear session) and redirect to login page
     request.session.flush()
-    return redirect('')
+    return redirect('/')
