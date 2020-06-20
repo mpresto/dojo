@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Notes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wrapper container mt-4">
+        <h2 class="display-4">My Notes</h2>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="card bg-light border-primary mb-3">
+                            <div class="card-header">Note Header</div>
+                            <div class="card-body">
+                                <h4 class="card-title">Note Title</h4>
+                                <p class="card-text">This is a note, that I wrote!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card bg-light border-primary mb-3">
+                            <div class="card-header">Note Header</div>
+                            <div class="card-body">
+                                <h4 class="card-title">Note Title</h4>
+                                <p class="card-text">I also wrote this note!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card bg-light border-primary mb-3">
+                            <div class="card-header">Note Header</div>
+                            <div class="card-body">
+                                <h4 class="card-title">Note Title</h4>
+                                <p class="card-text">Guess what. I wrote this one too. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>                
+
+            <div class="container">
+                <form class="formgroup" action="#" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <p> Note:</p>
+                        <textarea name="content" cols="40" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Post That Note!</button>
+                </form>
+            </div>
+    </div>
+    
+</body>
+</html>
