@@ -7,56 +7,57 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Notes</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <!-- <script defer src="main.js"></script> -->
 </head>
 
 <body>
+    {% load staticfiles %}
+
     <div class="wrapper container mt-4">
         <h2 class="display-4">My Notes</h2>
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-4">
+        <div class="container notes">
+            <div class="row">
+                {% for note in all_notes %}
+                    <div class="col-sm-4 note">
                         <div class="card bg-light border-primary mb-3">
-                            <div class="card-header">Note Header</div>
+                            <div class="card-header">Note</div>
                             <div class="card-body">
-                                <h4 class="card-title">Note Title</h4>
-                                <p class="card-text">This is a note, that I wrote!</p>
+                                <h4 class="card-title">{{ note.content }}</h4>
+                                <p class="card-text">{{ note.created_at }}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="card bg-light border-primary mb-3">
-                            <div class="card-header">Note Header</div>
-                            <div class="card-body">
-                                <h4 class="card-title">Note Title</h4>
-                                <p class="card-text">I also wrote this note!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card bg-light border-primary mb-3">
-                            <div class="card-header">Note Header</div>
-                            <div class="card-body">
-                                <h4 class="card-title">Note Title</h4>
-                                <p class="card-text">Guess what. I wrote this one too. </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>                
-
-            <div class="container">
-                <form class="formgroup" action="#" method="POST">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <p> Note:</p>
-                        <textarea name="content" cols="40" rows="5"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Post That Note!</button>
-                </form>
+                {% endfor %}
             </div>
+        </div>                
+
+        <div class="container">
+            <form class="form_group" id="note_form" action="/create" method="post">
+                <div class="form_group">
+                    {% csrf_token %}
+                    {{ noteForm }}
+                </div>
+                <input type="submit" value="Post That Note!">
+                </form>
+        </div>
     </div>
-    
 </body>
+
+<script>
+    $('form').submit(function(e){
+        e.preventDefault()
+        $.ajax({
+            url: '/create',
+            method: 'POST',
+            data: $(this).serialize(),
+            success: function(serverResponse){
+                $('.notes').html(serverResponse)
+            },
+        });
+        $(this).trigger('reset')
+    });
+</script>
 </html>
