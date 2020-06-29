@@ -1,0 +1,21 @@
+<div class="container" id="query_results">
+    <div class="col p-4 m-1">
+        <p class="row justify-content-end">1/2/3/4/5/></p>
+        <table class="table">
+            <th scope="col">Lead ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Date Created</th>
+            {% for lead in all_leads %}
+            <tr>
+                <td>{{ lead.id }}</td>
+                <td>{{ lead.first_name }}</td>
+                <td>{{ lead.last_name }}</td>
+                <td>{{ lead.email }}</td>
+                <td>{{ lead.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
