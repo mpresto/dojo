@@ -30,5 +30,4 @@ def paginate(request, id):
             'all_leads': Lead.objects.all(),
             'page_obj': page_object,
         }
-
     return render(request, 'query_results.html', context)
