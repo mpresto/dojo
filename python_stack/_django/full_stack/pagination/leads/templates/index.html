@@ -29,20 +29,18 @@
                 </div>
             </form>
         </div>
-        <div class="container" id="query_results">
+        <div class="container" id="results"
             <div class="col p-4 m-1">
 
-                <div class="pagination row justify-content-end">
+                <div class="pagination row justify-content-end" id="query">
                     <span class="step-links">
-                        {% for page in page_obj.num_pages %}
-                        {% endfor %}
                         {% if page_obj.has_previous %}
                             <a href="?page=1">&laquo;</a>
-                            <a href="?page={{ page_obj.previous_page_number }}">prev</a>
+                            <a href="?page/{{ page_obj.previous_page_number }}">prev</a>
                         {% endif %}
                 
                         <span class="current">
-                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                            Page {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
                         </span>
                 
                         {% if page_obj.has_next %}
@@ -74,7 +72,17 @@
     </div>
 
    <script>
-       
+        $('#query').on('click', 'a', function(e){
+            e.preventDefault()
+            $.ajax({
+                url: $(this).attr('href'),
+                method: 'get',
+                success: function(serverResponse){
+                    $('#query').html(serverResponse)
+                }
+            })
+        });
+
    </script>
 </body>
 
