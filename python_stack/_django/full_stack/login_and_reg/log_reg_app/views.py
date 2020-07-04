@@ -54,17 +54,6 @@ def register(request):
         return redirect('/success')
 
 
-def username(request):
-    userinput = request.POST['username']
-    result = User.objects.filter(username__icontains=userinput)
-    if result:
-        messages.error(request, "Username has been taken!")
-    else:
-        messages.success(request, "Username is available!")
-    
-    return render(request, 'snippets/username.html')
-
-
 def success(request):
     # render success page
     if 'userfname' not in request.session:
@@ -76,3 +65,15 @@ def logout(request):
     # logout (clear session) and redirect to login page
     request.session.flush()
     return redirect("/")
+
+
+# front end AJAX validations: 
+def username(request):
+    # responsive messaging for reg username field
+    userinput = request.POST['username']
+    result = User.objects.filter(username__icontains=userinput)
+    if result:
+        messages.error(request, "Username has been taken!")
+    else:
+        messages.success(request, "Username is available!")
+    return render(request, 'snippets/username.html')

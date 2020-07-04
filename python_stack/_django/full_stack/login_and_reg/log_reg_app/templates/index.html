@@ -10,6 +10,14 @@
 <body>
     <div class="wrapper container">
 
+    {% if messages %} 
+    <ul class="messages">    
+        {% for message in messages %}    
+            <li class="{{ messages.tags }}">{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    {% endif %}
+
         <div class="row">
             <div class="col p-4 bg-secondary m-1">
                 <h2 class="display-4">Register</h2>

@@ -4,6 +4,7 @@ from django.utils.dateformat import format
 import time
 import re
 from django.db import models
+from django.views.generic import View
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
@@ -13,6 +14,7 @@ EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 class UserManager(models.Manager):
     def reg_validator(self, postData):
         errors = {}
+
         if len(postData['username']) < 2:
             errors['user_name'] = "Username should be at least 2 characters."
         if len(postData['fname']) < 2:
@@ -35,13 +37,13 @@ class UserManager(models.Manager):
         result = User.objects.filter(email=postData['email'])
         if len(result) > 0:
             errors['uniqueness'] = "This email address is already registered."
-        
+   
         if len(postData['password']) < 8:
             errors['pw_length'] = "Password should be at least 8 characters."
         if postData['password'] != postData['conf_password']:
             errors['pw_match'] = "Passwords must match."
         return errors
- 
+
 
 class User(models.Model):
     username = models.CharField(max_length=255)
