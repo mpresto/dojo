@@ -5,46 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login/Registration Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="wrapper container">
-        {% if messages %}
-            <ul class="messages">    
-                {% for message in messages %}    
-                    <li>{{ message }}</li>    
-                {% endfor %}
-            </ul>
-        {% endif %}
 
         <div class="row">
-            <div class="col p-4 bg-info m-1">
+            <div class="col p-4 bg-secondary m-1">
                 <h2 class="display-4">Register</h2>
-                <form action="/register" method="POST" name="Registration">
+                <form action="/register" method="POST" id="registration">
                     {% csrf_token %}
+                    <div id="reg_messages"></div>
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" name="username" id="username">
+                    </div>
                     <div class="form-group">
                         <label for="fname">First Name:</label>
-                        <input type="text" class="form-control" name="fname">
+                        <input type="text" class="form-control" name="fname" id="fname">
                     </div>
                     <div class="form-group">
                         <label for="lname">Last Name:</label>
-                        <input type="text" class="form-control" name="lname">
+                        <input type="text" class="form-control" name="lname" id="lname">
                     </div>
                     <div class="form-group">
                         <label for="bday">Birthday:</label>
-                        <input type="date" class="form-control" name="bday">
+                        <input type="date" class="form-control" name="bday" id="bday">
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address:</label>
-                        <input type="text" class="form-control" name="email">
+                        <input type="text" class="form-control" name="email" id="email">
                     </div>
                     <div class="form-group">
                         <label for="password">Password:</label>
-                        <input type="password" class="form-control" name="password">
+                        <input type="password" class="form-control" name="password" id="password">
                     </div>
                     <div class="form-group">
                         <label for="conf_password">Confirm Password:</label>
-                        <input type="password" class="form-control" name="conf_password">
+                        <input type="password" class="form-control" name="conf_password" id="conf_password">
                     </div>
                     <button type="submit" class="btn btn-primary">Register</button>
                 </form>
@@ -67,6 +65,22 @@
             </div>
         </div>
     </div>
-
 </body>
+
+<script>
+    $(document).ready(function(){
+        $('#username').keyup(function(){
+            var data = $('#registration').serialize() // create variable 'data to capture data in the form
+            $.ajax({
+                method: "POST",
+                url: "/username",
+                data: data,
+            })
+            .done(function(res){
+                $('#reg_messages').html(res) // manipulate DOM when response comes back
+            });
+        });
+    });
+</script>
+
 </html>

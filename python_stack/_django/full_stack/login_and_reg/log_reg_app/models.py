@@ -13,8 +13,10 @@ EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 class UserManager(models.Manager):
     def reg_validator(self, postData):
         errors = {}
+        if len(postData['username']) < 2:
+            errors['user_name'] = "Username should be at least 2 characters."
         if len(postData['fname']) < 2:
-            errors["first_name"] = "First name should be at least 2 characters."
+            errors['first_name'] = "First name should be at least 2 characters."
         if len(postData['lname']) < 2:
             errors["last_name"] = "Last name should be at least 2 characters."     
         
@@ -42,6 +44,7 @@ class UserManager(models.Manager):
  
 
 class User(models.Model):
+    username = models.CharField(max_length=255)
     first_name = models.CharField(max_length=45)
     last_name = models.CharField(max_length=45)
     birthday = models.DateField()

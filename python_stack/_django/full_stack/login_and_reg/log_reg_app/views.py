@@ -18,7 +18,7 @@ def login(request):
         logged_user = user[0]
         # check password match
         if bcrypt.checkpw(request.POST['password'].encode(), logged_user.password.encode()):
-            request.session['username'] = logged_user.first_name  # save user in sessions
+            request.session['userfname'] = logged_user.first_name  # save user in sessions
             return redirect('/success')  # if match, redirect to success page
     # if we didn't find a match, display errors, redirect to login page
     messages.error(request, "Email and password do not match.")
@@ -39,6 +39,7 @@ def register(request):
         print(pw_hash)
 
         new_user = User.objects.create(
+            username=request.POST['username'],
             first_name=request.POST['fname'],
             last_name=request.POST['lname'],
             birthday=request.POST['bday'],
@@ -48,14 +49,25 @@ def register(request):
         messages.success(request, "Registration successful!")
         print("Created a new user")
         print(request.POST['bday'])
-        request.session['username'] = new_user.first_name
+        request.session['userfname'] = new_user.first_name
         # redirect to a success route
         return redirect('/success')
 
 
+def username(request):
+    userinput = request.POST['username']
+    result = User.objects.filter(username__icontains=userinput)
+    if result:
+        messages.error(request, "Username has been taken!")
+    else:
+        messages.success(request, "Username is available!")
+    
+    return render(request, 'snippets/username.html')
+
+
 def success(request):
     # render success page
-    if 'username' not in request.session:
+    if 'userfname' not in request.session:
         return redirect('/')
     return render(request, 'success.html')
 

@@ -18,10 +18,11 @@
                 <ul class="navbar-nav mr-auto">
                     
                 </ul>
-                <span class="navbar-text">Welcome, {{request.session.username}} <a class="btn btn-sm btn-light text-dark"
+                <span class="navbar-text">Welcome, {{request.session.userfname}} <a class="btn btn-sm btn-light text-dark"
                     href="/logout" role="button">Log out</a></span>
             </div>
         </nav>
+
         {% if messages %}
             <ul class="messages">    
                 {% for message in messages %}    
@@ -29,13 +30,14 @@
                 {% endfor %}
             </ul>
         {% endif %}
+        
         <div class="container">
             <div class="jumbotron">
                 <h1 class="display-4">Success!</h1>
-                <p class="lead">Welcome, it's great to have you here, {{request.session.username}}!</p>
+                <p class="lead">Welcome, it's great to have you here, {{request.session.userfname}}!</p>
             </div>
         </div>
     </div>
-    
+
 </body>
 </html>
