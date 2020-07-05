@@ -13,25 +13,25 @@
             <h2 class="display-5">Your Leads</h2>
         </div>
         <br><hr><br>
-        <div class="container" id="lead_search">
-            <form class="form_group" action="/leadsearch" method="GET">
+        <div class="container">
+            <form class="form_group" action="/leadsearch" method="GET" id="lead_search">
                 {% csrf_token %}
                 <h5>Apply Filters:</h5>
                 <div class="form-group">
-                    <label for="first">First Name:</label>
-                    <input type="text" name="first" id="fname">
+                    <label for="fname">First Name:</label>
+                    <input type="text" name="fname" id="fname">
                     <label for="lname">Last Name:</label>
                     <input type="text" name="lname" id="lname">
                     <label for="date_min">From:</label>
                     <input type="date" name="date_min" id="date_min">
                     <label for="date_max">To:</label>
-                    <input type="date" name="date_max" id="date_max">
-                    <button type="submit" value="Search">Submit</button>
+                    <input type="date" name="date_max" id="date_max" value="">
+                    <!-- <button type="submit" value="Search">Submit</button> -->
                 </div>
             </form>
         </div>
 
-        <div class="container">
+        <div class="container" id="results">
             <div class="col p-4 m-1">
                 <div class="pagination row justify-content-end" id="pages">
                     <span class="step-links">
@@ -73,6 +73,14 @@
     </div>
 
    <script>
+       // set default search dates
+            //NOTES:
+            //var d = new Date(2018, 11, 24, 10, 33, 30, 0); --> Y, M, D, h, m, s, ms
+            //JavaScript counts months from 0 to 11: 0 = January, 11 = December
+
+        document.getElementById('date_min').valueAsDate = new Date(2020, 0, 1);
+        document.getElementById('date_max').valueAsDate = new Date();
+        
        // ajax pagination
         $('#pages').on('click', 'a', function(e){
             e.preventDefault()
@@ -86,18 +94,18 @@
         });
     
         // ajax search
-        $('#fname').keyup(function(){
+        $(this).keyup(function(){
             var data = $('#lead_search').serialize() //capture form data
             $.ajax({
-                method: 'POST',
-                url: '/leadsearch',
+                method: 'GET',
+                url: 'leadsearch',
                 data: data,
             })
-            .done(function(res){
-                $('#wrapper').html(res)
-            })
-
-        })
+            .done(function(serverResponse){
+                console.log(serverResponse)
+                $('#results').html(serverResponse)
+            });
+        });
 
 
    </script>

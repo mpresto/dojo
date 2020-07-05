@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from .models import Lead
 from django.views.decorators.csrf import csrf_exempt
+import datetime
 
 
 
@@ -39,8 +40,16 @@ def paginate(request, id):
 @csrf_exempt
 def search(request):
     # apply filter
-    userinput = request.GET['first']
-    result = Lead.objects.filter(first_name__icontains=userinput)
+    fname_input = request.GET['fname']
+    lname_input = request.GET['lname']
+    min_date_input = request.GET['date_min']
+    max_date_input = request.GET['date_max']
+
+    result = Lead.objects.filter(
+        first_name__icontains=fname_input,
+        last_name__icontains=lname_input,
+        created_at__range=[min_date_input, max_date_input]
+        )
     if result:
         messages.success(request, "Your search returned the following:")
     else:
