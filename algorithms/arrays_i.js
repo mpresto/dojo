@@ -266,22 +266,22 @@ rotateArr([1,2,3,4,5,6],2)
 // you are given, with values in original order. No built-in array functions.
 
 
-function filterRange(arr, min, max) {
-	for(var i = 0; i < arr.length; i++) {
-		if(arr[i] > min && arr[i] < max) {
-			for(var j = i; j < arr.length - 1; j++) {
-                console.log(arr)
-                arr[j] = arr[j + 1];
-            }
-            console.log(arr);
-            arr.length = arr.length - 1;
-            console.log(arr);
-            i--;
-            console.log(i);
-		}
+function filterRange(arr, min, max){
+    var count = 0;
+    var index = 0
+    for (var i = 0; i <arr.length; i++ ){
+        if(arr[i] >= min && arr[i] <= max){
+            arr[index] = arr[i]  
+            index++
+            count++
+        }  
     }
-    console.log(arr);
-    return arr;
+    count = arr.length-count
+    for (i = 0; i <= count-1; i++){
+        console.log(arr)
+        arr.pop()
+    }
+    return arr
 }
 filterRange([3,7,-5,11,4,19,2,8],0,7)
 
