@@ -1,4 +1,22 @@
-// Fronts
+// FRONTS - Singly Linked Lists
+
+// Add Front
+// Write a method that accepts a value and create a new node, assign it to 
+// the list head, and return a pointer to the new head node.
+
+// Remove Front
+// Write a method to remove the head node and return the new list head node. 
+// If the list is empty, return null.
+
+// Front
+// Write a method to return the value (not the node) at the head of the list. 
+// If the list is empty, return null.
+
+// Contains
+// Sam thinks Tad might be somewhere in a very long line waiting to attend 
+// the Superman movie. Given a ListNode pointer and a val, return whether val 
+// is found in any node in the list.
+
 
 // node class:
 class Node{
@@ -18,34 +36,41 @@ class SLL{
     addFront(value) {
         if (this.head == null){  // if list is empty
             this.head = new Node(value);
-            return this;            
+            return this        
         }
         else { // if list has a head
             var prevHead = this.head;
             this.head = new Node(value);
             this.head.next = prevHead;
-            return this;
+            return this
         }    
     }
 
     removeFront(){
         if (this.head == null){
-            return this;
+            return this
         }
         else {
         this.head = this.head.next;
-        return this;
+        return this
         }
     }
 
     front(){
-        if (this.head == null){
-            console.log(this.head.value)
-            return this.head.value;
-        }
+        return this.head.value;
+    }
+
+    contains(value){
+        var runner = this.head;
+        while(runner){
+            if (runner.value == value){
+                return true;  //if match, return true
+            }
+            runner = runner.next; // increment the runner
+        } 
+        return this
     }
 }
-
 
 
 var my_list = new SLL();
@@ -54,14 +79,4 @@ my_list.removeFront().removeFront().removeFront()
 my_list.front()
 console.log(my_list)
 
-// Add Front
-// Write a method that accepts a value and create a new node, assign it to 
-// the list head, and return a pointer to the new head node.
-
-// Remove Front
-// Write a method to remove the head node and return the new list head node. 
-// If the list is empty, return null.
-
-// Front
-// Write a method to return the value (not the node) at the head of the list. 
-// If the list is empty, return null.
+my_list.contains(4)
