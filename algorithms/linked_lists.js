@@ -80,3 +80,28 @@ my_list.front()
 console.log(my_list)
 
 my_list.contains(4)
+
+
+//////////////
+
+function ListNode(value) {
+    this.val = value;
+    this.next = null;
+}
+
+//Length
+// July 20, 2013: about 5000 people wait in line for a chance to audition 
+// for American Idol. Create a function that accepts a pointer to the first 
+// list node, and returns number of nodes in that SList.
+
+
+function length(){
+    var runner = this.head;
+    var count = 0;
+    while (runner) {
+        count +=1;
+        runner = runner.next
+    }
+    return count;
+}
+
