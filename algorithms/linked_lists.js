@@ -70,38 +70,52 @@ class SLL{
         } 
         return this
     }
-}
 
-
-var my_list = new SLL();
-my_list.addFront(7).addFront(3)
-my_list.removeFront().removeFront().removeFront()
-my_list.front()
-console.log(my_list)
-
-my_list.contains(4)
 
 
 //////////////
 
-function ListNode(value) {
-    this.val = value;
-    this.next = null;
-}
+    ListNode(value) {
+        this.val = value;
+        this.next = null;
+    }
 
 //Length
 // July 20, 2013: about 5000 people wait in line for a chance to audition 
 // for American Idol. Create a function that accepts a pointer to the first 
 // list node, and returns number of nodes in that SList.
-
-
-function length(){
-    var runner = this.head;
-    var count = 0;
-    while (runner) {
-        count +=1;
-        runner = runner.next
+    
+    length(){
+        var runner = this.head;
+        var count = 0;
+        while (runner) {
+            count +=1;
+            runner = runner.next
+        }
+        return count;
     }
-    return count;
+
+
+// Display
+//Create display(node) for debugging that returns a string containing all list 
+// values. Build what you wish console.log(myList) did!
+
+    display(){
+        var runner = this.head;
+        var nodeCount = 0;
+        while (runner){
+            console.log('Node:', nodeCount, 'Value:', runner.value);
+            nodeCount += 1;
+            runner = runner.next;
+        }
+        return this;
+    }
+
 }
 
+var my_list = new SLL();
+
+my_list.addFront(7).addFront(3).removeFront().front()
+my_list.contains(3)
+my_list.display()
+console.log(my_list)
