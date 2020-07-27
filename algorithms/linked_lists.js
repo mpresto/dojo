@@ -111,11 +111,65 @@ class SLL{
         return this;
     }
 
+// Max/Min/Average
+// SList: Max
+// Create function max(node) to return list’s largest val.
+
+    max(){
+        var runner = this.head;
+        var max = this.head.value;
+        while (runner){
+            if (runner.value > max){
+                max = runner.value;
+                console.log(max)
+            }
+            runner = runner.next;
+        }
+        console.log('Max =', max);
+        return max;
+    }
+
+
+// SList: Min
+// Create min(node) to return list’s smallest val.
+
+    min(){
+        var runner = this.head;
+        var min = this.head.value;
+        while (runner){
+            if (runner.value < min){
+                min = runner.value;
+            }
+            runner = runner.next;
+        }
+        console.log('Min =', min);
+        return min;
 }
+
+
+// SList: Average
+// Create average(node) to return average val.   
+
+    average(){
+        var runner = this.head;
+        var sum = 0;
+        while (runner) {
+            sum += runner.value;
+            runner = runner.next;
+        }
+        var avg = sum/this.length();
+        console.log(sum, avg);
+        return avg;
+    }
+
+}   
 
 var my_list = new SLL();
 
-my_list.addFront(7).addFront(3).removeFront().front()
+my_list.addFront(7).addFront(3).addFront(-28).addFront(11).addFront(63).removeFront().front()
+console.log(my_list)
 my_list.contains(3)
 my_list.display()
-console.log(my_list)
+my_list.max()
+my_list.min()
+my_list.average()
