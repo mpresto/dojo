@@ -167,3 +167,74 @@ function mergeArrays(myArray, alicesArray) {
      return ordered;
   }
   
+
+  // Merge Sorted Arrays
+
+  function mergeArrays(myArray, alicesArray) {
+
+    // Combine the sorted arrays into one large sorted array
+    let p1 = 0;
+    let p2 = 0;
+    let all = [];
+    let allLength = myArray.length + alicesArray.length
+    
+    for (i=0; i<allLength; i++){
+      if (p1 >= myArray.length){
+        all.push(alicesArray[p2]);
+        p2++;
+      }
+      else if (p2 >= alicesArray.length){
+        all.push(myArray[p1]);
+        p1++;
+      }
+      
+      else if (myArray[p1] < alicesArray[p2]){
+        all.push(myArray[p1]);
+        p1++;
+      }
+      
+      else {
+        all.push(alicesArray[p2]);
+        p2++;
+      }
+      
+    }
+  
+    return all;
+  }
+  
+
+
+  //Cafe Order Checker (is First Come First Served?)
+
+  function isFirstComeFirstServed(takeOutOrders, dineInOrders, servedOrders) {
+
+    // Check if we're serving orders first-come, first-served
+  
+    let tod = 0 // indext of takeOutOrders
+    let dio = 0 // index of dineInOrders
+    
+    for (let i = 0; i < servedOrders.length; i++){
+      // if orders aren't returning from the kitchen:
+      if (servedOrders.length !== dineInOrders.length + takeOutOrders.length){
+        return false
+      }
+      
+      if (servedOrders[i] == takeOutOrders[tod]){
+        tod++
+        continue
+      }
+      
+      else if (servedOrders[i] == dineInOrders[dio]){
+        dio++
+        continue
+      }
+      
+      //else: 
+      return false
+    }
+    
+    //all has passed, so return true!
+    return true
+  }
+  

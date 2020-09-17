@@ -39,19 +39,19 @@ class SLL{
             return this        
         }
         else { // if list has a head
-            var prevHead = this.head;
-            this.head = new Node(value);
-            this.head.next = prevHead;
+            var prevHead = this.head;  // store the current head
+            this.head = new Node(value);  //create new head
+            this.head.next = prevHead; //link prev head
             return this
         }    
     }
 
     removeFront(){
-        if (this.head == null){
+        if (this.head == null){ // if list is empty
             return this
         }
         else {
-        this.head = this.head.next;
+        this.head = this.head.next; 
         return this
         }
     }
