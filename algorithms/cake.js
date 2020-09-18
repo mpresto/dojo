@@ -238,3 +238,35 @@ function mergeArrays(myArray, alicesArray) {
     return true
   }
   
+
+
+  // Finding 2 movies to perfectly match flight length: 
+  
+  function canTwoMoviesFillFlight(movieLengths, flightLength) {
+
+    // Determine if two movie runtimes add up to the flight length
+    
+    // movieLength1 + movieLength2 = flightLength
+    // movieLength2 = flightlength - movieLength1
+    
+    // put movies we've seen so far into a set: 
+    const seenMovies = new Set()
+    
+    for (i = 0; i < movieLengths.length; i++){
+      // create variable to hold first movie length
+      const firstMovie = movieLengths[i];
+      
+      // create variable to hold value of the second movie length
+      const matchingSecondMovie = flightLength - firstMovie;
+      
+      //check if second movie length value exists in array
+      if (seenMovies.has(matchingSecondMovie)){
+        return true;
+      }
+      
+      // add first movie to list to prevent watching the same movie twice
+      seenMovies.add(firstMovie);
+    }
+  
+    return false;
+  }
