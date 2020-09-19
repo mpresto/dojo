@@ -270,3 +270,63 @@ function mergeArrays(myArray, alicesArray) {
   
     return false;
   }
+
+
+
+  // Fibonacci --- recursive
+
+  function fib(n) {
+
+    // Compute the nth Fibonacci number
+    // fib(0) = 0
+    // fib(1) = 1
+    // fib(n) = fib(n-1) + fib(n-2)
+    
+    if (n === 0 || n === 1){
+      return n;
+    }
+    
+    return fib(n-1) + fib(n-2);
+  }
+// This is a recursive function, and makes two child calls for each n, 
+// therefore it has an exponential time cost --> O(2^n)
+  
+
+  // Fibonacci -- non-recursive 0(n) time and 0(1) space
+
+  function fib(n) {
+
+    // Compute the nth Fibonacci number
+    // fib(0) = 0
+    // fib(1) = 1
+    // fib(n) = fib(n-1) + fib(n-2)
+    // current = (current-1) + (current - 2)
+    // current = (previous) + (prevPrevious)
+    
+    // edge case:
+    if (n < 0) {
+      throw new Error('Index cannot be negative.');
+    }
+    
+    else if (n === 0 || n === 1){
+      return n;
+    }
+  
+    let prevPrev = 0; // 0th fibonacci
+    let prev = 1;     // 1st fibonacci
+    let current;      // declare current
+    
+    // start for loop at i = 1 because we know 0, 1
+    for (let i = 1; i < n; i++){
+      
+      current = prev + prevPrev;
+  
+      // reassign the incrementation
+      prevPrev = prev;
+      prev = current;
+    }
+  
+    return current;
+  }
+
+  
