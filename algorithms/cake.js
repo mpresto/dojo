@@ -330,3 +330,38 @@ function mergeArrays(myArray, alicesArray) {
   }
 
   
+
+// Find Unique Integer --> Missing Drone Question
+function findUniqueDeliveryId(deliveryIds) {
+
+  // Find the one unique ID in the array
+
+  // make a set from deliveryIds to get only unique numbers
+  const delivSet = new Set (deliveryIds);
+  
+  // find the sum of the set, and the sum of deliveryIds
+  const sumSet = Array.from(delivSet).reduce((a, b) => a+b, 0);
+  const sumArr = deliveryIds.reduce((a, b) => a+b, 0);
+  
+  // use math: 2(a+b+c) - (a+a+b+b+c) = c
+  return (2 * sumSet) - sumArr;
+  
+}
+
+// or use XOR ^: 
+
+function findUniqueDeliveryId(deliveryIds) {
+
+  // // Find the one unique ID in the array
+  
+  //use XOR
+  // set uniqueID to 0
+  var uniqueDeliveryId = 500;
+  
+  //apply XOR operator to each deliveryId
+  deliveryIds.forEach(deliveryId=> {
+    uniqueDeliveryId ^= deliveryId;
+  });
+  
+  return uniqueDeliveryId;
+}
