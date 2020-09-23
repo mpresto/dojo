@@ -365,3 +365,21 @@ function findUniqueDeliveryId(deliveryIds) {
   
   return uniqueDeliveryId;
 }
+
+
+// Array of n + 1 numbers -- which number appears twice? 
+
+function findRepeat(numbers) {
+
+  // Find the number that appears twice
+  
+  //(n**2+n)/2 = sum
+  //sum(array) - sum
+  
+  const n = numbers.length-1;
+  const sum = (n**2 + n) / 2;
+  const arrSum = numbers.reduce((a, b) => a + b);
+  
+  return arrSum - sum;
+
+}
