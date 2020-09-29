@@ -405,3 +405,69 @@ function hasPalindromePermutation(theString) {
   // has one or zero characters without a pair
   return unpairedCharacters.size <= 1;
 }
+
+
+// Highest Product of 3
+
+function highestProductOf3(arrayOfInts) {
+
+  // Calculate the highest product of three numbers
+  
+  // use a greedy approach
+  // keep track of highestProductof3, highesProductof2, highest
+  // keep track of lowestProductof3, lowestProductof2, lowest -> because neg numbers!
+  
+  if (arrayOfInts.length < 3){
+    throw new Error('Less than 3 items!')
+  }
+
+  
+  // prepopulate highest and lowest vals based on 1st 2 items:
+  let highest = Math.max(arrayOfInts[0], arrayOfInts[1]);
+  let lowest = Math.min(arrayOfInts[0], arrayOfInts[1]);
+  
+  let highestProductOf2 = arrayOfInts[0] * arrayOfInts[1];
+  let lowestProductOf2 = arrayOfInts[0] * arrayOfInts[1];
+
+  // prepopulate with first 3 items
+  let highestProductOf3 = arrayOfInts[0] * arrayOfInts[1] * arrayOfInts[2];
+  
+  // loop through starting at index 2
+  for (let i = 2; i < arrayOfInts.length; i++) {
+    const current = arrayOfInts[i];
+    
+    // Do we have a new highest product of 3?
+    // its either current highest 
+    // or current times the highest product of 2
+    // or current times lowest product of 2
+    
+    highestProductOf3 = Math.max(
+      highestProductOf3, 
+      current * highestProductOf2,
+      current * lowestProductOf2
+      );
+      
+    // Do we have a new highest Product of 2?
+    highestProductOf2 = Math.max(
+      highestProductOf2, 
+      current * highest,
+      current * lowest
+      );
+      
+    // Do we have a new lowest product of 2?
+    lowestProductOf2 = Math.min(
+      lowestProductOf2, 
+      current * highest,
+      current * lowest
+      );
+    
+    // Do we have a new highest?
+    highest = Math.max(highest, current);
+    
+    // Do we have a new lowest?
+    lowest = Math.min(lowest, current);
+    
+  }
+  
+  return highestProductOf3;
+}
