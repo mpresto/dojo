@@ -471,3 +471,35 @@ function highestProductOf3(arrayOfInts) {
   
   return highestProductOf3;
 }
+
+
+
+
+// Highest Product Except
+function getProductsOfAllIntsExceptAtIndex(intArray) {
+
+  if (intArray.length < 2){
+    throw new Error('This array is too short.')
+  }
+
+  // Make a list of the products
+  const productsExcept = [];
+  
+  let productSoFar = 1;
+  
+  //find product of all arrays BEFORE the index
+  for (let i=0; i<intArray.length; i++){
+    productsExcept[i] = productSoFar;
+    productSoFar *= intArray[i];
+  }
+  
+  productSoFar = 1;
+  
+  //find product of all arrays AFTER the index and multiply that val by product
+  for (let j=intArray.length-1; j>=0; j--){
+    productsExcept[j] *= productSoFar;
+    productSoFar *= intArray[j];
+  }
+  
+  return productsExcept;
+}
